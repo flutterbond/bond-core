@@ -1,7 +1,45 @@
 name: bond_core_workspace
+publish_to: none
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ^3.13.0
+
+workspace:
+  - packages/core
+  - packages/cache
+  - packages/network
+  - packages/form
+  - packages/form/packages/bond_form_getx
+  - packages/form/packages/bond_form_bloc
+  - packages/notifications
+  - packages/app_analytics
+  # packages/form/packages/bond_form_riverpod and its example are added by core-riverpod.
 
 dev_dependencies:
-  melos: ^6.3.2
+  melos: ^8.9.0
+
+# lib/ and test/ are passed explicitly so that a package never re-checks the
+# packages nested inside it (packages/form contains the bond_form_* adapters).
+melos:
+  scripts:
+    analyze:
+      description: Analyze every package.
+      exec: dart analyze \$(ls -d lib test 2>/dev/null)
+
+    format:
+      description: Check formatting of every package (fails if a file would change).
+      exec: dart format --output=none --set-exit-if-changed \$(ls -d lib test 2>/dev/null)
+
+    test:
+      description: Run the tests of every package that has a test/ directory.
+      exec:
+        command: flutter test
+        concurrency: 1
+      packageFilters:
+        dirExists: test
+
+    publish:dry:
+      description: Validate every publishable package with a publish dry run.
+      exec: dart pub publish --dry-run
+      packageFilters:
+        noPrivate: true

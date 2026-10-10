@@ -5,3 +5,5 @@ homepage: https://github.com/onestudio-co/flutter-bond
 
 environment:
   sdk: ^3.6.0
+
+resolution: workspace
