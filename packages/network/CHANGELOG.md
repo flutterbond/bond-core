@@ -18,6 +18,10 @@
 ### Fixed
 - `Meta.from` was annotated `@JsonKey(name: 'last_page')`, so regenerating the model made it read
   `last_page`. The annotation is removed and `meta.g.dart` regenerated; `from` reads the `from` key.
+- `ServerError.fromJson` threw `type 'Null' is not a subtype of type 'String'` for error bodies
+  without `message`/`code` (e.g. an AWS Lambda function URL's 403 `{"Message": null}`), so the
+  `errorFactory` crash replaced the real error. Missing values now default to
+  `'Unexpected server error'` / `'unknown'`.
 
 ### Changed
 - `dio` constraint `^5.8.0`.
