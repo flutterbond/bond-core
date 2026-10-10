@@ -66,8 +66,8 @@ void main() {
 
       // Setup watch
       final observer = MockObserver<int>();
-      when(observer.onUpdate(key, any)).thenAnswer((_) {
-        latestValue = _.positionalArguments[1] as int;
+      when(observer.onUpdate(key, any)).thenAnswer((invocation) {
+        latestValue = invocation.positionalArguments[1] as int;
       });
       Cache.watch<int>(key, observer);
 
