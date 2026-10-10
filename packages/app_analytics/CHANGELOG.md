@@ -1,3 +1,12 @@
+## 0.2.0
+
+### Breaking
+- **Environment SDK Constraint:** raised from `>=3.0.0 <4.0.0` to `^3.6.0`, the minimum for a
+  Dart pub workspace member.
+
+### Changed
+- Library names removed (`library;`).
+
 ## 0.1.0
 
 ### Breaking Changes

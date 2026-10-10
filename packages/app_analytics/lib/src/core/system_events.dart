@@ -1,4 +1,4 @@
-library default_events;
+library;
 
 export 'system_events/event_item.dart';
 export 'system_events/user_added_to_cart.dart';
