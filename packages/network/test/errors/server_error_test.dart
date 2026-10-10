@@ -4,7 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('ServerError.fromJson', () {
     test('reads message and code', () {
-      final error = ServerError.fromJson({'message': 'Not found', 'code': '404'});
+      final error = ServerError.fromJson({
+        'message': 'Not found',
+        'code': '404',
+      });
 
       expect(error.message, 'Not found');
       expect(error.code, '404');
