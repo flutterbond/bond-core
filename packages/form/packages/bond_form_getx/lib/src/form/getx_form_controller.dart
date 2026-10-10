@@ -20,10 +20,8 @@ abstract class GetxFormController<Success, Failure extends Error>
   /// This is a reactive variable that holds the current state of the form.
   final Rx<BondFormState<Success, Failure>> formState =
       Rx<BondFormState<Success, Failure>>(
-    BondFormState<Success, Failure>(
-      fields: {},
-    ),
-  );
+        BondFormState<Success, Failure>(fields: {}),
+      );
 
   /// Gets the current state of the form.
   @override
@@ -45,9 +43,7 @@ abstract class GetxFormController<Success, Failure extends Error>
   void onInit() {
     super.onInit();
     // Initialize the form state with the provided fields
-    formState.value = BondFormState<Success, Failure>(
-      fields: fields(),
-    );
+    formState.value = BondFormState<Success, Failure>(fields: fields());
     initializeFieldTracking();
   }
 
