@@ -1,10 +1,10 @@
 import 'package:example/features/stepper/providers/user_information_form_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:bond_form/bond_form.dart';
 
 class PersonalInformationStep extends ConsumerWidget {
-  const PersonalInformationStep({Key? key}) : super(key: key);
+  const PersonalInformationStep({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

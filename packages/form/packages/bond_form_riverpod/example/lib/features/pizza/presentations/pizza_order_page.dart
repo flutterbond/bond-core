@@ -1,6 +1,6 @@
 import 'package:bond_core/bond_core.dart';
 import 'package:bond_form/bond_form.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'providers/pizza_provider.dart';
@@ -17,9 +17,7 @@ class PizzaOrderPage extends ConsumerWidget {
       (previous, next) => _formStateListener(context, previous, next),
     );
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pizza Order'),
-      ),
+      appBar: AppBar(title: const Text('Pizza Order')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -50,7 +48,7 @@ class PizzaOrderPage extends ConsumerWidget {
 
               // Branch
               DropdownButtonFormField<Branches>(
-                value: formState.dropDownValue('branch'),
+                initialValue: formState.dropDownValue('branch'),
                 items: formState
                     .dropDownItems('branch')
                     .map(
@@ -60,10 +58,8 @@ class PizzaOrderPage extends ConsumerWidget {
                       ),
                     )
                     .toList(),
-                onChanged: (value) => controller.updateDropDown(
-                  'branch',
-                  value,
-                ),
+                onChanged: (value) =>
+                    controller.updateDropDown('branch', value),
                 style: context.textTheme.bodyMedium,
                 decoration: InputDecoration(
                   hintText: formState.label('branch'),
@@ -73,36 +69,20 @@ class PizzaOrderPage extends ConsumerWidget {
               const SizedBox(height: 16),
 
               // Pizza Size
-              Text(
-                formState.label('pizzaSize'),
-                style: context.textTheme.titleSmall,
+              _radioGroup<PizzaSize?>(
+                context,
+                formState,
+                controller,
+                'pizzaSize',
               ),
-              for (final radioButton in formState.radioButtonsOf('pizzaSize'))
-                ListTile(
-                  title: Text(radioButton.label),
-                  leading: Radio(
-                    value: radioButton.value,
-                    groupValue: formState.radioGroupValue('pizzaSize'),
-                    onChanged: (value) =>
-                        controller.updateRadioGroup('pizzaSize', value),
-                  ),
-                ),
 
               // Crust Type
-              Text(
-                formState.label('crustType'),
-                style: context.textTheme.titleSmall,
+              _radioGroup<CrustType?>(
+                context,
+                formState,
+                controller,
+                'crustType',
               ),
-              for (final radioButton in formState.radioButtonsOf('crustType'))
-                ListTile(
-                  title: Text(radioButton.label),
-                  leading: Radio(
-                    value: radioButton.value,
-                    groupValue: formState.radioGroupValue('crustType'),
-                    onChanged: (value) =>
-                        controller.updateRadioGroup('crustType', value),
-                  ),
-                ),
 
               // Toppings
               Text(
@@ -121,21 +101,12 @@ class PizzaOrderPage extends ConsumerWidget {
                 ),
 
               // Include Sides
-              Text(
-                formState.label('includeSides'),
-                style: context.textTheme.titleSmall,
+              _radioGroup<bool?>(
+                context,
+                formState,
+                controller,
+                'includeSides',
               ),
-              for (final radioButton
-                  in formState.radioButtonsOf('includeSides'))
-                ListTile(
-                  title: Text(radioButton.label),
-                  leading: Radio(
-                    value: radioButton.value,
-                    groupValue: formState.radioGroupValue('includeSides'),
-                    onChanged: (value) =>
-                        controller.updateRadioGroup('includeSides', value),
-                  ),
-                ),
 
               // Special Instructions
               TextFormField(
@@ -161,15 +132,37 @@ class PizzaOrderPage extends ConsumerWidget {
                         : Colors.blueAccent,
                     child: const Text(
                       'Create Order',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                )
+                ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _radioGroup<T>(
+    BuildContext context,
+    BondFormState<String, Error> formState,
+    PizzaOrderFormController controller,
+    String fieldName,
+  ) {
+    return RadioGroup<T>(
+      groupValue: formState.radioGroupValue<T>(fieldName),
+      onChanged: (value) =>
+          controller.updateRadioGroup<T>(fieldName, value as T),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(formState.label(fieldName), style: context.textTheme.titleSmall),
+          for (final radioButton in formState.radioButtonsOf<T>(fieldName))
+            ListTile(
+              title: Text(radioButton.label),
+              leading: Radio<T>(value: radioButton.value),
+            ),
+        ],
       ),
     );
   }
