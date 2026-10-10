@@ -16,6 +16,7 @@ workspace:
   # packages/form/packages/bond_form_riverpod and its example are added by core-riverpod.
 
 dev_dependencies:
+  flutter_lints: ^6.0.0
   melos: ^8.9.0
 
 # lib/ and test/ are passed explicitly so that a package never re-checks the
