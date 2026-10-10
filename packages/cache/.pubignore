@@ -1,0 +1,4 @@
+doc/
+coverage/
+.flutter-plugins
+.flutter-plugins-dependencies
