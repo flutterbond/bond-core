@@ -16,9 +16,9 @@ dependencies:
     sdk: flutter
 
   # Bond packages (resolved to the workspace members)
-  bond_core: ">=0.0.3 <0.2.0"
-  bond_form: ">=0.0.22+19 <0.2.0"
-  bond_form_riverpod: ">=0.0.17+19 <0.2.0"
+  bond_core: ^0.1.0
+  bond_form: ^0.1.0
+  bond_form_riverpod: ^0.1.0
 
   get_it: ">=8.0.3 <10.0.0"
 
