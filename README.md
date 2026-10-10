@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/onestudio-co/flutter-bond/5e75d3b52e12536478dc9b40455299f3f4e5c9cc/assets/images/app_logo.svg" width="400" alt="Flutter Bond Logo"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/flutterbond/flutter-bond/5e75d3b52e12536478dc9b40455299f3f4e5c9cc/assets/images/app_logo.svg" width="400" alt="Flutter Bond Logo"></a></p>
 
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
@@ -12,15 +12,15 @@ Bond comprises multiple packages that can be integrated as per the requirements 
 
 | Package Name        | Description | Pub.dev | View Source |
 |---------------------|-------------|---------|-------------|
-| Bond Core           | The central hub of the Bond framework, housing fundamental utilities and infrastructure that the rest of the packages rely on. | [![bond_core](https://img.shields.io/pub/v/bond_core.svg)](https://pub.dev/packages/bond_core) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/core) |
-| Bond Network        | A robust package that simplifies API interactions and network operations. | [![bond_network](https://img.shields.io/pub/v/bond_network.svg)](https://pub.dev/packages/bond_network) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/network) |
-| Bond Cache          | Enables effortless caching in your Flutter apps. | [![bond_cache](https://img.shields.io/pub/v/bond_cache.svg)](https://pub.dev/packages/bond_cache) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/cache) |
-| Bond Form           | An intuitive package that simplifies form operations. | [![bond_form](https://img.shields.io/pub/v/bond_form.svg)](https://pub.dev/packages/bond_form) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/form) |
-| Bond App Aanalytics | An insightful package for tracking app usage and analytics. | [![bond_app_analytics](https://img.shields.io/pub/v/bond_app_analytics.svg)](https://pub.dev/packages/bond_app_analytics) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/app_analytics) |
-| Bond Notifications  | A flexible package for effective notification handling. | [![bond_notifications](https://img.shields.io/pub/v/bond_notifications.svg)](https://pub.dev/packages/bond_notifications) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/notifications) |
-| Bond Form Riverpod  | Riverpod 3 state management for Bond forms. | [![bond_form_riverpod](https://img.shields.io/pub/v/bond_form_riverpod.svg)](https://pub.dev/packages/bond_form_riverpod) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/form/packages/bond_form_riverpod) |
-| Bond Form GetX      | GetX state management for Bond forms. | [![bond_form_getx](https://img.shields.io/pub/v/bond_form_getx.svg)](https://pub.dev/packages/bond_form_getx) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/form/packages/bond_form_getx) |
-| Bond Form Bloc      | Bloc state management for Bond forms. | [![bond_form_bloc](https://img.shields.io/pub/v/bond_form_bloc.svg)](https://pub.dev/packages/bond_form_bloc) | [Source](https://github.com/onestudio-co/bond-core/tree/main/packages/form/packages/bond_form_bloc) |
+| Bond Core           | The central hub of the Bond framework, housing fundamental utilities and infrastructure that the rest of the packages rely on. | [![bond_core](https://img.shields.io/pub/v/bond_core.svg)](https://pub.dev/packages/bond_core) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/core) |
+| Bond Network        | A robust package that simplifies API interactions and network operations. | [![bond_network](https://img.shields.io/pub/v/bond_network.svg)](https://pub.dev/packages/bond_network) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/network) |
+| Bond Cache          | Enables effortless caching in your Flutter apps. | [![bond_cache](https://img.shields.io/pub/v/bond_cache.svg)](https://pub.dev/packages/bond_cache) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/cache) |
+| Bond Form           | An intuitive package that simplifies form operations. | [![bond_form](https://img.shields.io/pub/v/bond_form.svg)](https://pub.dev/packages/bond_form) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/form) |
+| Bond App Aanalytics | An insightful package for tracking app usage and analytics. | [![bond_app_analytics](https://img.shields.io/pub/v/bond_app_analytics.svg)](https://pub.dev/packages/bond_app_analytics) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/app_analytics) |
+| Bond Notifications  | A flexible package for effective notification handling. | [![bond_notifications](https://img.shields.io/pub/v/bond_notifications.svg)](https://pub.dev/packages/bond_notifications) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/notifications) |
+| Bond Form Riverpod  | Riverpod 3 state management for Bond forms. | [![bond_form_riverpod](https://img.shields.io/pub/v/bond_form_riverpod.svg)](https://pub.dev/packages/bond_form_riverpod) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/form/packages/bond_form_riverpod) |
+| Bond Form GetX      | GetX state management for Bond forms. | [![bond_form_getx](https://img.shields.io/pub/v/bond_form_getx.svg)](https://pub.dev/packages/bond_form_getx) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/form/packages/bond_form_getx) |
+| Bond Form Bloc      | Bloc state management for Bond forms. | [![bond_form_bloc](https://img.shields.io/pub/v/bond_form_bloc.svg)](https://pub.dev/packages/bond_form_bloc) | [Source](https://github.com/flutterbond/bond-core/tree/main/packages/form/packages/bond_form_bloc) |
 
 ## Versions
 

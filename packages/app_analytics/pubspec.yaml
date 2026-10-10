@@ -1,7 +1,7 @@
 name: bond_app_analytics
 description: Bond package provides a convenient way to log analytics events
 version: 0.2.0
-homepage: https://github.com/onestudio-co/flutter-bond
+homepage: https://github.com/flutterbond/flutter-bond
 
 environment:
   sdk: ^3.6.0

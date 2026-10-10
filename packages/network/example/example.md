@@ -49,6 +49,6 @@ final List<ServiceProvider> providers = [
 ```
 
 Remember, Bond Core offers a range of utilities, extensions, and other functionalities. Explore
-the [official documentation](https://github.com/onestudio-co/bond-docs) for comprehensive guides, tutorials, and API
+the [official documentation](https://github.com/flutterbond/bond-docs) for comprehensive guides, tutorials, and API
 references.
 

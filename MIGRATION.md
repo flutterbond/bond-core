@@ -3,7 +3,7 @@
 This release moves every Bond package to **Dart 3.13 / Flutter 3.47.7**, Riverpod 3 and
 `package:material_ui`. Each package's `CHANGELOG.md` has the full list; this page is the short
 version for app developers. To upgrade the Flutter Bond template itself, see
-[flutter-bond/MIGRATION.md](https://github.com/onestudio-co/flutter-bond/blob/main/MIGRATION.md).
+[flutter-bond/MIGRATION.md](https://github.com/flutterbond/flutter-bond/blob/main/MIGRATION.md).
 
 ## Versions
 

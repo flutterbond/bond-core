@@ -1,8 +1,8 @@
 name: bond_form_riverpod
 description: Form is a Bond package provides a convenient way to handle Form using riverpod.
 version: 0.1.0
-repository: https://github.com/onestudio-co/bond-core/tree/main/packages/form/packages/bond_form_riverpod
-homepage: https://github.com/onestudio-co/flutter-bond
+repository: https://github.com/flutterbond/bond-core/tree/main/packages/form/packages/bond_form_riverpod
+homepage: https://github.com/flutterbond/flutter-bond
 
 environment:
   sdk: ^3.13.0
