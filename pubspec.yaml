@@ -25,7 +25,7 @@ melos:
   scripts:
     analyze:
       description: Analyze every package.
-      exec: dart analyze \$(ls -d lib test 2>/dev/null)
+      exec: dart analyze --fatal-infos \$(ls -d lib test 2>/dev/null)
 
     format:
       description: Check formatting of every package (fails if a file would change).
@@ -41,6 +41,8 @@ melos:
 
     publish:dry:
       description: Validate every publishable package with a publish dry run.
-      exec: dart pub publish --dry-run
+      exec:
+        command: dart pub publish --dry-run
+        concurrency: 1
       packageFilters:
         noPrivate: true
