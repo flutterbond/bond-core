@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0
+
+### Breaking
+- Requires Dart 3.13 and Flutter 3.47 or newer.
+- Depends on `bond_core: ^0.1.0` (material_ui based). No API change in `bond_cache` itself.
+
+### Changed
+- Removed the library name (`library bond_cache;` -> `library;`) and reformatted with the Dart 3.13 formatter.
+- Tests cleaned up for `flutter_lints` 6 (no behaviour change).
+
 ## 0.0.4+4
 - Added export for `src/cache/bond_cache.dart` with `CacheData` hidden in `bond_cache.dart`.
 - Fix `store` method to return `BondCache` from `sl` instead of `CacheDriver`.

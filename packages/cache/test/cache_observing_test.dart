@@ -1,5 +1,4 @@
 import 'package:bond_cache/bond_cache.dart';
-import 'package:bond_cache/src/cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -97,8 +96,7 @@ void main() {
       verifyNever(observer.onUpdate(key, value));
     });
 
-    test(
-        'watch throws ArgumentError and Prevents onUpdate'
+    test('watch throws ArgumentError and Prevents onUpdate'
         ' Call When Updating With Mismatched Type', () async {
       final key = 'watch_key';
       final value = 1;
@@ -116,8 +114,9 @@ void main() {
       );
 
       // Ensure that the observer's onUpdate method was never called since the operation should fail
-      verifyNever(observer.onUpdate(key,
-          any)); // Using `any` to ensure no onUpdate calls occurred regardless of value
+      verifyNever(
+        observer.onUpdate(key, any),
+      ); // Using `any` to ensure no onUpdate calls occurred regardless of value
     });
 
     test('unwatch removes observer', () async {

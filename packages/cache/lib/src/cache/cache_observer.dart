@@ -32,7 +32,8 @@ extension CacheObserverList on List<CacheObserver> {
   /// Retrieves all `StreamCacheObserver` instances from the list.
   List<StreamCacheObserver> streamObservers() {
     return where(
-            (o) => o is ObserverWrapper && o.observer is StreamCacheObserver)
+          (o) => o is ObserverWrapper && o.observer is StreamCacheObserver,
+        )
         .map((o) => (o as ObserverWrapper).observer as StreamCacheObserver)
         .toList();
   }
@@ -70,7 +71,7 @@ class ObserverWrapper<T> implements CacheObserver<T> {
   final String identifier;
 
   ObserverWrapper(this.observer, this.key)
-      : identifier = _generateUniqueId(key);
+    : identifier = _generateUniqueId(key);
 
   static String _generateUniqueId(String key) {
     return '${DateTime.now().microsecondsSinceEpoch}_$key';

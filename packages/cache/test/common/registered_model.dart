@@ -9,9 +9,7 @@ class RegisteredModel {
     return RegisteredModel._(json['data']);
   }
 
-  Map<String, dynamic> toJson() => {
-        'data': data,
-      };
+  Map<String, dynamic> toJson() => {'data': data};
 
   @override
   bool operator ==(Object other) =>

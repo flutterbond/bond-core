@@ -30,8 +30,9 @@ mixin CacheObservable {
   void watch<T>(String key, CacheObserver<T> observer) {
     observers.putIfAbsent(key, () => []);
     if (observers[key]!.length >= maxObserversPerKey) {
-      observers[key]!
-          .removeAt(0); // Remove the oldest observer to maintain the limit
+      observers[key]!.removeAt(
+        0,
+      ); // Remove the oldest observer to maintain the limit
     }
     observers[key]!.add(ObserverWrapper<T>(observer, key));
   }
@@ -51,7 +52,8 @@ mixin CacheObservable {
         }
       }
       throw ArgumentError(
-          'Key $key is already being observed by a different type');
+        'Key $key is already being observed by a different type',
+      );
     }
     // No existing observer of the correct type was found, create a new one
     final controller = StreamController<T>.broadcast();
@@ -93,7 +95,8 @@ mixin CacheObservable {
       } catch (e) {
         if (e is TypeError) {
           throw ArgumentError(
-              'Observer type mismatch for key $key. Expected ${T.toString()}');
+            'Observer type mismatch for key $key. Expected ${T.toString()}',
+          );
         }
       }
     });

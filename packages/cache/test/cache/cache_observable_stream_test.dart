@@ -75,29 +75,30 @@ void main() {
     });
 
     test(
-        'Steam throws ArgumentError when use the same key with a different type',
-        () async {
-      final key = 'consistent_key';
+      'Steam throws ArgumentError when use the same key with a different type',
+      () async {
+        final key = 'consistent_key';
 
-      // Initially use the key with integers
-      cache.watch<int>(key, MockObserver<int>());
-      final intStream = cache.stream<int>(key);
-      final intQueue = StreamQueue<int>(intStream);
+        // Initially use the key with integers
+        cache.watch<int>(key, MockObserver<int>());
+        final intStream = cache.stream<int>(key);
+        final intQueue = StreamQueue<int>(intStream);
 
-      // Notify an integer value
-      cache.notifyObservers<int>(key, 42);
-      expect(await intQueue.next, 42);
+        // Notify an integer value
+        cache.notifyObservers<int>(key, 42);
+        expect(await intQueue.next, 42);
 
-      // Attempt to use the same key with a different type (e.g., String)
-      // Since the system should block this, the existing int stream should not be affected.
-      expect(() => cache.stream<String>(key), throwsA(isA<ArgumentError>()));
+        // Attempt to use the same key with a different type (e.g., String)
+        // Since the system should block this, the existing int stream should not be affected.
+        expect(() => cache.stream<String>(key), throwsA(isA<ArgumentError>()));
 
-      // Further confirm no new values or types are pushed to the int stream
-      cache.notifyObservers<int>(key, 43);
-      expect(await intQueue.next, 43);
+        // Further confirm no new values or types are pushed to the int stream
+        cache.notifyObservers<int>(key, 43);
+        expect(await intQueue.next, 43);
 
-      await intQueue.cancel();
-    });
+        await intQueue.cancel();
+      },
+    );
 
     test('key can be watched and streamed at the same time', () async {
       final key = 'test';
@@ -114,27 +115,29 @@ void main() {
       verify(observer.onUpdate(key, 42)).called(1);
     });
 
-    test('Stream emits updates on data change with multiple observers',
-        () async {
-      final key = 'test_key';
+    test(
+      'Stream emits updates on data change with multiple observers',
+      () async {
+        final key = 'test_key';
 
-      final observer1 = MockObserver<int>();
-      final observer2 = MockObserver<int>();
+        final observer1 = MockObserver<int>();
+        final observer2 = MockObserver<int>();
 
-      cache.watch<int>(key, observer1);
-      cache.watch<int>(key, observer2);
+        cache.watch<int>(key, observer1);
+        cache.watch<int>(key, observer2);
 
-      final stream = cache.stream<int>(key);
-      final streamListener = StreamQueue<int>(stream);
+        final stream = cache.stream<int>(key);
+        final streamListener = StreamQueue<int>(stream);
 
-      cache.notifyObservers<int>(key, 42);
+        cache.notifyObservers<int>(key, 42);
 
-      expect(await streamListener.next, 42);
-      verify(observer1.onUpdate(key, 42)).called(1);
-      verify(observer2.onUpdate(key, 42)).called(1);
+        expect(await streamListener.next, 42);
+        verify(observer1.onUpdate(key, 42)).called(1);
+        verify(observer2.onUpdate(key, 42)).called(1);
 
-      await streamListener.cancel();
-    });
+        await streamListener.cancel();
+      },
+    );
 
     test('Unwatch remove stream observer and close controller', () async {
       final key = 'test_key';
@@ -159,10 +162,7 @@ void main() {
 
       // Verify that the stream does not receive new updates and is closed
       var isStreamClosed = false;
-      stream.listen(
-        (_) {},
-        onDone: () => isStreamClosed = true,
-      );
+      stream.listen((_) {}, onDone: () => isStreamClosed = true);
 
       // Allow time for any pending events to be processed
       await Future.delayed(Duration(milliseconds: 100));

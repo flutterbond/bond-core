@@ -137,8 +137,7 @@ void main() {
       verify(observer.onUpdate(key, 42)).called(1);
     });
 
-    test(
-        'Observer Throws ArgumentError on type mismatch'
+    test('Observer Throws ArgumentError on type mismatch'
         ' between notified data and observer', () async {
       final key = 'test_key';
 
