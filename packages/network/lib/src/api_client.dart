@@ -18,9 +18,7 @@ class ApiClient {
       return await client.get(
         url,
         queryParameters: queryParameters,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } on DioException catch (error) {
       throw _handleDioError(error);
@@ -38,9 +36,7 @@ class ApiClient {
       return await client.post(
         url,
         data: body,
-        options: Options(
-          headers: headers,
-        ),
+        options: Options(headers: headers),
       );
     } on DioException catch (error) {
       throw _handleDioError(error);
@@ -49,13 +45,17 @@ class ApiClient {
     }
   }
 
-  Future<Response> postUri(uri, {Map<String, String>? headers, body}) async {
+  Future<Response> postUri(
+    Uri uri, {
+    Map<String, String>? headers,
+    body,
+  }) async {
     try {
-      return await client.postUri(uri,
-          data: body,
-          options: Options(
-            headers: headers,
-          ));
+      return await client.postUri(
+        uri,
+        data: body,
+        options: Options(headers: headers),
+      );
     } on DioException catch (error) {
       throw _handleDioError(error);
     } catch (e) {
@@ -84,15 +84,19 @@ class ApiClient {
     }
   }
 
-  Future<Response> delete(url,
-      {required Map<String, String> headers, body, queryParameters}) async {
+  Future<Response> delete(
+    String url, {
+    required Map<String, String> headers,
+    body,
+    queryParameters,
+  }) async {
     try {
-      return await client.delete(url,
-          queryParameters: queryParameters,
-          data: body,
-          options: Options(
-            headers: headers,
-          ));
+      return await client.delete(
+        url,
+        queryParameters: queryParameters,
+        data: body,
+        options: Options(headers: headers),
+      );
     } on DioException catch (error) {
       throw _handleDioError(error);
     } catch (e) {

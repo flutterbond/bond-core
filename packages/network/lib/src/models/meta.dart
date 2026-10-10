@@ -17,7 +17,6 @@ class Meta {
 
   @JsonKey(name: 'current_page')
   final int? currentPage;
-  @JsonKey(name: 'last_page')
   final int? from;
   @JsonKey(name: 'last_page')
   final int? lastPage;

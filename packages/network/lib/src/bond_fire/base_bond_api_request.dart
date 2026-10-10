@@ -88,14 +88,10 @@ class BaseBondApiRequest<T> {
   ///   - [dio]: The Dio instance used to execute HTTP requests.
   ///   - [path]: The path of the API endpoint for the request.
   ///   - [method]: The HTTP method (e.g., GET, POST, etc.) used for the request.
-  BaseBondApiRequest(
-    this._dio,
-    String path, {
-    required String method,
-  })  : _path = path,
-        _method = method;
+  BaseBondApiRequest(this._dio, String path, {required this._method})
+    : _path = path;
 
-  /// Adds custom headers to the request.  /// Adds custom headers to the request.
+  /// Adds custom headers to the request.
   ///
   /// Parameters:
   /// - [headers]: A map of headers to be added to the request.
@@ -227,26 +223,23 @@ class BaseBondApiRequest<T> {
     String? store,
     Factory? factory,
   }) {
-    _customCacheKeys[key] = _CustomCacheKey(
-      path,
-      (value) async {
-        var model;
-        if (factory != null) {
-          model = factory(value);
-        } else {
-          model = _getModel<V>(value);
-        }
-        if (model == null) {
-          return false;
-        }
-        if (store != null) {
-          await Cache.store(store).put<V>(key, model);
-        } else {
-          await Cache.put<V>(key, model);
-        }
-        return true;
-      },
-    );
+    _customCacheKeys[key] = _CustomCacheKey(path, (value) async {
+      V? model;
+      if (factory != null) {
+        model = factory(value);
+      } else {
+        model = _getModel<V>(value);
+      }
+      if (model == null) {
+        return false;
+      }
+      if (store != null) {
+        await Cache.store(store).put<V>(key, model);
+      } else {
+        await Cache.put<V>(key, model);
+      }
+      return true;
+    });
     return this;
   }
 
@@ -260,10 +253,7 @@ class BaseBondApiRequest<T> {
         _path,
         queryParameters: _queryParameters,
         data: data,
-        options: Options(
-          method: _method,
-          headers: _headers,
-        ),
+        options: Options(method: _method, headers: _headers),
         cancelToken: _cancelToken,
       );
 
@@ -354,10 +344,7 @@ class BaseBondApiRequest<T> {
       final fieldName = entry.key;
       final file = entry.value;
       formData.files.add(
-        MapEntry(
-          fieldName,
-          await MultipartFile.fromFile(file.path),
-        ),
+        MapEntry(fieldName, await MultipartFile.fromFile(file.path)),
       );
     }
 
@@ -365,12 +352,7 @@ class BaseBondApiRequest<T> {
       for (final entry in data.entries) {
         final fieldName = entry.key;
         final value = entry.value;
-        formData.fields.add(
-          MapEntry(
-            fieldName,
-            value.toString(),
-          ),
-        );
+        formData.fields.add(MapEntry(fieldName, value.toString()));
       }
     }
 
@@ -415,7 +397,7 @@ extension _TypeExtensions on Type {
       'List<int>',
       'List<double>',
       'List<String>',
-      'List<bool>'
+      'List<bool>',
     };
 
     // Check if the non-nullable type string is in the set of primitive types

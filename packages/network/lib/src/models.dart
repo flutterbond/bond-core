@@ -1,4 +1,4 @@
-library models;
+library;
 
 export 'models/links.dart';
 export 'models/list_response.dart';

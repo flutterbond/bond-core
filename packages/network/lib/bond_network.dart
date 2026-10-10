@@ -1,4 +1,4 @@
-library bond_network;
+library;
 
 export 'src/api.dart';
 export 'src/api_client.dart';

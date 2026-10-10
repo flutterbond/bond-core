@@ -4,10 +4,7 @@ part 'server_error.g.dart';
 
 @JsonSerializable()
 class ServerError extends Error {
-  ServerError({
-    required this.message,
-    required this.code,
-  });
+  ServerError({required this.message, required this.code});
 
   final String message;
   final String code;

@@ -18,11 +18,7 @@ class ListResponse<T extends Model> extends Equatable with Jsonable {
   /// Creates a [ListResponse].
   ///
   /// [data] must not be null. [meta] and [links] are optional.
-  const ListResponse({
-    required this.data,
-    this.meta,
-    this.links,
-  });
+  const ListResponse({required this.data, this.meta, this.links});
 
   /// The list of data objects of type `T`.
   @ResponseConverter()
@@ -44,11 +40,7 @@ class ListResponse<T extends Model> extends Equatable with Jsonable {
 
   /// Creates a copy of this [ListResponse] but with the given fields
   /// replaced with the new values.
-  ListResponse<T> copyWith({
-    List<T>? data,
-    Meta? meta,
-    Links? links,
-  }) {
+  ListResponse<T> copyWith({List<T>? data, Meta? meta, Links? links}) {
     return ListResponse<T>(
       data: data ?? this.data,
       meta: meta ?? this.meta,
