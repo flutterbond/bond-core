@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.1.0
+
+Migrates to Riverpod 3. Riverpod 3 has one `Notifier` class for every
+provider kind (`FamilyNotifier`, `AutoDisposeNotifier` and
+`AutoDisposeFamilyNotifier` were removed), so the 12 notifier classes of this
+package become 6. Whether a form is auto-disposed is now decided by the
+provider declaration (`NotifierProvider.autoDispose`), not by the class.
+
+### Breaking
+
+* Requires `riverpod` ^3.0.0 (`flutter_riverpod` ^3.0.0 in apps), Dart ^3.13.0 and Flutter >=3.47.0.
+* `AutoDisposeFormStateNotifier`, `AutoDisposeStepFormStateNotifier` and
+  `AutoDisposeStepperFormStateNotifier` are now deprecated typedefs of
+  `FormStateNotifier`, `StepFormStateNotifier` and `StepperFormStateNotifier`.
+  Existing subclasses keep compiling; extend the base class instead and keep
+  (or add) `NotifierProvider.autoDispose` on the provider.
+* Removed `AutoDisposeFamilyFormStateNotifier`, `AutoDisposeFamilyStepFormStateNotifier`
+  and `AutoDisposeFamilyStepperFormStateNotifier`. Use `FamilyFormStateNotifier`,
+  `FamilyStepFormStateNotifier` and `FamilyStepperFormStateNotifier` with
+  `NotifierProvider.autoDispose.family`.
+* `FamilyFormStateNotifier`, `FamilyStepFormStateNotifier` and
+  `FamilyStepperFormStateNotifier` now extend the matching base class and receive
+  the family argument through their constructor: `MyForm(super.arg)`. The argument
+  is available as the `arg` field; `build` takes no parameter any more
+  (`build(Arg arg)` overrides become `build()`).
+* `stopOnFirstError` is no longer redeclared as a `final` field on the notifiers;
+  the constructor parameter is unchanged and sets the field of `BaseFormController`.
+
+### Changed
+
+* Once the provider is disposed, `state` returns the last state and writes are
+  ignored (`ref.mounted` guard). An `onSubmit` that completes after the page was
+  closed no longer throws `UnmountedRefException`.
+* Fields are still disposed through `ref.onDispose`; reading `state` there no
+  longer trips Riverpod 3's "Cannot use Ref inside life-cycles" assertion.
+* Added tests (`test/form_state_notifier_test.dart`).
+
 ## 0.0.17+19
 * Updated bond_form dependency to ^0.0.22+19
 
