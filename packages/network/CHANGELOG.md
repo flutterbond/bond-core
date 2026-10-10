@@ -1,4 +1,12 @@
 ### Changelog
+## 0.0.11+11
+- Remove the bond fire singleton factory.
+
+## 0.0.11+9
+### Fixed
+- Fixed cache writes not completing before `execute()` returns in tests.
+  - Added microtask flush after cache writes to ensure `FlutterSecureStorage` mock operations complete synchronously.
+  - This resolves flaky tests where assertions ran before cache was updated.
 
 ## 0.0.11+4
 ### Added

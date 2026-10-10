@@ -323,6 +323,10 @@ class BaseBondApiRequest<T> {
         await custom.put(value); // This will call Cache.put<V>(...)
       }
     }
+    // Ensure all microtasks from cache writes complete before returning.
+    // This is necessary because some cache drivers (e.g., FlutterSecureStorage mock)
+    // schedule their completion on the microtask queue.
+    await Future<void>.delayed(Duration.zero);
   }
 
   /// Extracts a nested field value from a map based on a dot-separated path.
