@@ -1,3 +1,3 @@
-library commons;
+library;
 
 export 'commons/jsonable.dart';

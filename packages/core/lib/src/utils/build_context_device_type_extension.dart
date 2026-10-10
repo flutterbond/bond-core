@@ -22,8 +22,4 @@ extension DeviceTypeContext on BuildContext {
   }
 }
 
-enum DeviceType {
-  phone,
-  tablet,
-  desktop,
-}
+enum DeviceType { phone, tablet, desktop }

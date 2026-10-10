@@ -1,4 +1,4 @@
-library utils;
+library;
 
 export 'utils/build_context_device_type_extension.dart';
 export 'utils/build_context_insets_extension.dart';

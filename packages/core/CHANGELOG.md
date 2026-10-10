@@ -1,5 +1,24 @@
 ## Changelog
 
+## 0.1.0
+
+### Breaking
+- Requires Dart 3.13 and Flutter 3.47 or newer.
+- `ThemeContext` and `ScaffoldContext` now use the types of `package:material_ui`
+  (`TextTheme`, `ColorScheme`, `ThemeData`, `SnackBar`, `ScaffoldMessenger`) instead of
+  `package:flutter/material.dart`. Migrate app imports with
+  `dart fix --apply --code=migrate_design_widgets`.
+- Removed the `ThemeContext.buttonTheme` getter (legacy `ButtonThemeData`). Use
+  `Theme.of(context).buttonTheme` if you still need it.
+
+### Changed
+- `get_it` range widened to `>=8.0.3 <10.0.0` (get_it 9 is supported).
+- Added the `material_ui: ^1.6.0` dependency.
+- `InsetsContext` imports `package:flutter/widgets.dart` only.
+
+### Fixed
+- `ThemeContext.textTheme` doc example used the removed `bodyText1`; it now shows `bodyLarge`.
+
 ## 0.0.3
 
 ### Changes

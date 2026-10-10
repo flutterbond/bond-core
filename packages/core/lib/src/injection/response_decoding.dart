@@ -49,8 +49,9 @@ mixin ResponseDecoding {
   /// - Parameter [json] The JSON map that needs to be converted.
   /// - Returns: An instance of type [T] if the conversion is successful; otherwise, `null`.
   T? _responseConvert<T>(Map<String, dynamic> json) {
-    final model =
-        _mappedFactories[T.toString().replaceAll('?', '')]?.call(json);
+    final model = _mappedFactories[T.toString().replaceAll('?', '')]?.call(
+      json,
+    );
     if (model != null) return model as T;
     return null;
   }
@@ -61,8 +62,10 @@ mixin ResponseDecoding {
   /// map that uses the string representation of the type as keys. This ensures
   /// compatibility when looking up the factory functions by the string representation
   /// of the type [T].
-  late final Map<String, JsonFactory> _mappedFactories =
-      factories.map((key, value) {
+  late final Map<String, JsonFactory> _mappedFactories = factories.map((
+    key,
+    value,
+  ) {
     return MapEntry(key.toString(), value);
   });
 
