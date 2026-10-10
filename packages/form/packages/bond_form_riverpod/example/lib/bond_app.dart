@@ -1,21 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:example/l10n/app_localizations.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'app/routes.dart';
 
 class BondApp extends StatelessWidget {
-  const BondApp({Key? key}) : super(key: key);
+  const BondApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: routes,
       localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
         AppLocalizations.delegate,
+        ...GlobalMaterialLocalizations.delegates,
       ],
       locale: const Locale('en'),
       supportedLocales: const [Locale('en')],

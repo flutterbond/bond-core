@@ -1,48 +1,29 @@
-import 'dart:async';
+import 'form_state_notifier.dart';
 
-import 'package:bond_form/bond_form.dart';
-import 'package:riverpod/riverpod.dart';
-
-/// A class to manage form state, extending a notifier to notify its subscribers
-/// of changes, and using the FormController mixin for form operations.
+/// A [FormStateNotifier] for `family` providers.
+///
+/// Riverpod 3 passes the family argument to the notifier's constructor
+/// instead of `build`, so subclasses forward it with `super.arg`:
+///
+/// ```dart
+/// class EditPostForm extends FamilyFormStateNotifier<Post, Error, int> {
+///   EditPostForm(super.arg);
+///   // fields() and onSubmit() can read `arg`.
+/// }
+///
+/// final editPostProvider = NotifierProvider.autoDispose
+///     .family<EditPostForm, BondFormState<Post, Error>, int>(EditPostForm.new);
+/// ```
 ///
 /// Type Parameters:
 ///   - [Success] The data type that represents the result of a successful form submission.
 ///   - [Failure] The error type that extends [Error] representing the failure cases of form submission.
 ///   - [Arg] The type of the argument that will be passed to the form.
 abstract class FamilyFormStateNotifier<Success, Failure extends Error, Arg>
-    extends FamilyNotifier<BondFormState<Success, Failure>, Arg>
-    with
-        BaseFormController<Success, Failure, BondFormState<Success, Failure>>,
-        FieldChangeTrackingMixin<Success, Failure>,
-        FormController<Success, Failure> {
-  /// Determines whether the validation should stop at the first error.
-  final bool stopOnFirstError;
+    extends FormStateNotifier<Success, Failure> {
+  /// The argument the family provider created this notifier with.
+  final Arg arg;
 
-  /// Constructor for FormStateNotifier, defaults to not stopping at the first error.
-  FamilyFormStateNotifier({
-    this.stopOnFirstError = false,
-  });
-
-  /// Gets the current state of the form.
-  @override
-  BondFormState<Success, Failure> get state => super.state;
-
-  /// Sets the new state for the form.
-  @override
-  set state(BondFormState<Success, Failure> newState) {
-    super.state = newState;
-  }
-
-  /// Builds the initial state for the form.
-  @override
-  BondFormState<Success, Failure> build(Arg arg) {
-    ref.onDispose(dispose);
-    return BondFormState<Success, Failure>(fields: fields());
-  }
-
-  /// An abstract method to be implemented by the subclass,
-  /// detailing what should happen when the form is submitted.
-  @override
-  Future<Success> onSubmit();
+  /// Creates the notifier for [arg], defaults to not stopping at the first error.
+  FamilyFormStateNotifier(this.arg, {super.stopOnFirstError});
 }

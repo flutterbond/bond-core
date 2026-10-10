@@ -1,0 +1,4 @@
+# The example ships its Dart code and the Android/iOS projects it is built and
+# verified on. Its macOS project predates the Flutter 3.47 migration (flavored
+# schemes, generated plugin registrant, Podfile.lock) and is not part of it.
+example/macos/

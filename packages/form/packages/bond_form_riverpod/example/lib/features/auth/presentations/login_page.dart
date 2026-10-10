@@ -1,6 +1,6 @@
 import 'package:bond_form/bond_form.dart';
 import 'package:example/features/auth/presentations/providers/login_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,9 +30,7 @@ class LoginPage extends ConsumerWidget {
                 prefixIcon: const Icon(Icons.email),
               ),
             ),
-            const SizedBox(
-              height: 16,
-            ),
+            const SizedBox(height: 16),
             TextFormField(
               keyboardType: TextInputType.text,
               onChanged: (value) =>
@@ -55,11 +53,9 @@ class LoginPage extends ConsumerWidget {
                     : Colors.blueAccent,
                 child: const Text(
                   'Login',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
-              )
+              ),
           ],
         ),
       ),

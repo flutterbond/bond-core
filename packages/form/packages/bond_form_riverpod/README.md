@@ -25,11 +25,11 @@ effectively in Flutter applications.
 2. **Strong Form Handling**: Utilizing Form Bond's strong form validation and management features, it provides a
    complete solution for form-based Flutter applications.
 
-3. **Auto Resource Cleanup**: With the `AutoDisposeFormStateNotifier`, resources related to the form state are
-   automatically cleaned up, making it more memory-efficient.
+3. **Auto Resource Cleanup**: Declare the provider with `NotifierProvider.autoDispose` and the form's fields are
+   disposed as soon as nothing listens to it.
 
-4. **Flexibility**: You have the ability to customize the form behavior and validation using the `FormStateNotifier`
-   and `AutoDisposeFormStateNotifier`.
+4. **Flexibility**: You have the ability to customize the form behavior and validation using `FormStateNotifier`,
+   `StepFormStateNotifier`, `StepperFormStateNotifier` and their `Family*` variants.
 
 5. **Type-Safety**: Being strongly typed, it helps catch issues at compile-time rather than runtime.
 
@@ -39,8 +39,11 @@ To use `bond_form_riverpod`, simply add it as a dependency in your `pubspec.yaml
 
 ```yaml
 dependencies:
-  bond_form_riverpod: ^0.0.1
+  bond_form_riverpod: ^0.1.0
+  flutter_riverpod: ^3.0.0
 ```
+
+Version 0.1.0 targets Riverpod 3. Apps still on Riverpod 2 stay on `bond_form_riverpod: ^0.0.17+19`.
 
 ## Usage:
 
@@ -100,7 +103,7 @@ class LoginFormController extends FormStateNotifier<User, Error> {
 }
 
 final loginProvider =
-NotifierProvider<LoginFormController, BondFormState<String, Error>>(
+NotifierProvider.autoDispose<LoginFormController, BondFormState<String, Error>>(
   LoginFormController.new,
 );
 ```
@@ -121,17 +124,37 @@ class MyFormStateNotifier extends FormStateNotifier<String, MyError> {
 }
 ```
 
-### `AutoDisposeFormStateNotifier`
+### Auto-dispose
 
-Like `FormStateNotifier`, but it extends `AutoDisposeNotifier` for auto resource cleanup. It's perfect for forms that
-need to be efficient with resource usage, especially when they are no longer in the user's view.
-
-Example:
+Riverpod 3 has a single `Notifier` class, so auto-disposal is chosen on the provider, not on the notifier class.
+Extend `FormStateNotifier` and declare the provider with `NotifierProvider.autoDispose`:
 
 ```dart
-class MyAutoDisposeFormStateNotifier extends AutoDisposeFormStateNotifier<String, MyError> {
-  // Implement required methods...
+final myFormProvider =
+    NotifierProvider.autoDispose<MyFormStateNotifier, BondFormState<String, MyError>>(
+  MyFormStateNotifier.new,
+);
+```
+
+`AutoDisposeFormStateNotifier`, `AutoDisposeStepFormStateNotifier` and `AutoDisposeStepperFormStateNotifier` remain
+as deprecated aliases of the base classes to ease the upgrade.
+
+Once the provider is disposed, `state` keeps returning the last state and writes are ignored, so an `onSubmit` that
+completes after the page was closed does not throw.
+
+### `FamilyFormStateNotifier`
+
+For `family` providers. Riverpod 3 passes the argument to the notifier's constructor; it is available as `arg`.
+`FamilyStepFormStateNotifier` and `FamilyStepperFormStateNotifier` work the same way.
+
+```dart
+class EditPostForm extends FamilyFormStateNotifier<Post, Error, int> {
+  EditPostForm(super.arg);
+  // Implement fields() and onSubmit(); both can read `arg`.
 }
+
+final editPostProvider = NotifierProvider.autoDispose
+    .family<EditPostForm, BondFormState<Post, Error>, int>(EditPostForm.new);
 ```
 
 ## Documentation

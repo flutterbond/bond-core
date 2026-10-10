@@ -13,7 +13,8 @@ workspace:
   - packages/form/packages/bond_form_bloc
   - packages/notifications
   - packages/app_analytics
-  # packages/form/packages/bond_form_riverpod and its example are added by core-riverpod.
+  - packages/form/packages/bond_form_riverpod
+  - packages/form/packages/bond_form_riverpod/example
 
 dev_dependencies:
   flutter_lints: ^6.0.0

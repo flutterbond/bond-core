@@ -1,8 +1,6 @@
 import 'api.dart';
 
-final configs = {
-  ...apiConfigs,
-};
+final configs = {...apiConfigs};
 
 dynamic config(String key) {
   if (!configs.containsKey(key)) {

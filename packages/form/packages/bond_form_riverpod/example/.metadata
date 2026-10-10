@@ -4,8 +4,8 @@
 # This file should be version controlled.
 
 version:
-  revision: 682aa387cfe4fbd71ccd5418b2c2a075729a1c66
-  channel: stable
+  revision: "abaf9c523780a608bd46686fd5e53740a07077f8"
+  channel: "stable"
 
 project_type: app
 
@@ -18,6 +18,12 @@ migration:
     - platform: web
       create_revision: 682aa387cfe4fbd71ccd5418b2c2a075729a1c66
       base_revision: 682aa387cfe4fbd71ccd5418b2c2a075729a1c66
+    - platform: android
+      create_revision: abaf9c523780a608bd46686fd5e53740a07077f8
+      base_revision: abaf9c523780a608bd46686fd5e53740a07077f8
+    - platform: ios
+      create_revision: abaf9c523780a608bd46686fd5e53740a07077f8
+      base_revision: abaf9c523780a608bd46686fd5e53740a07077f8
 
   # User provided section
 

@@ -3,10 +3,16 @@ import 'package:bond_form/validator_localizations.dart';
 import 'package:example/features/auth/presentations/login_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
+  setUpAll(() async {
+    sl.registerSingleton<ValidatorLocalizations>(
+      await ValidatorLocalizations.load(const Locale('en')),
+    );
+  });
+
   testWidgets(
     'Should display error messages for email and password when the form is invalid and the login button is tapped',
     (WidgetTester tester) async {
@@ -15,11 +21,7 @@ void main() {
       // Build the LoginForm widget wrapped with required parent widgets
       await tester.pumpWidget(
         const ProviderScope(
-          child: MaterialApp(
-            home: Scaffold(
-              body: LoginPage(),
-            ),
-          ),
+          child: MaterialApp(home: Scaffold(body: LoginPage())),
         ),
       );
 
@@ -30,8 +32,10 @@ void main() {
       );
       expect(
         find.text(
-          sl<ValidatorLocalizations>()
-              .minLengthValidationMessage('Password', 6),
+          sl<ValidatorLocalizations>().minLengthValidationMessage(
+            'Password',
+            6,
+          ),
         ),
         findsNothing,
       );
@@ -57,8 +61,10 @@ void main() {
       );
       expect(
         find.text(
-          sl<ValidatorLocalizations>()
-              .minLengthValidationMessage('Password', 6),
+          sl<ValidatorLocalizations>().minLengthValidationMessage(
+            'Password',
+            6,
+          ),
         ),
         findsOneWidget,
       );

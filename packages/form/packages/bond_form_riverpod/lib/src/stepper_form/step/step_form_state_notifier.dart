@@ -1,7 +1,7 @@
-import 'dart:async';
-
 import 'package:bond_form/bond_form.dart';
 import 'package:riverpod/riverpod.dart';
+
+import '../../mounted_state_guard.dart';
 
 /// A state notifier for managing the state of a single step in a stepper form.
 ///
@@ -9,30 +9,23 @@ import 'package:riverpod/riverpod.dart';
 /// for a single step in a multi-step form. This class is designed to handle form state,
 /// validation, and submission logic for a specific step in a stepper form sequence.
 ///
+/// Declare it with `NotifierProvider` or `NotifierProvider.autoDispose`; for a
+/// `family` provider, extend [FamilyStepFormStateNotifier].
+///
 /// Type Parameters:
 /// - [Success] The data type representing the result of a successful form submission.
 /// - [Failure] The error type that extends [Error], representing failure cases of form submission.
 abstract class StepFormStateNotifier<Success, Failure extends Error>
     extends Notifier<BondFormState<Success, Failure>>
     with
+        MountedStateGuard<BondFormState<Success, Failure>>,
         BaseFormController<Success, Failure, BondFormState<Success, Failure>>,
         StepFormController<Success, Failure> {
-  /// A flag indicating if the validation should stop on encountering the first error.
-  final bool stopOnFirstError;
-
   /// Constructor to initialize the [StepFormStateNotifier].
   ///
   /// - [stopOnFirstError]: Optional flag indicating if the validation should stop on encountering the first error.
-  StepFormStateNotifier({
-    this.stopOnFirstError = false,
-  });
-
-  @override
-  BondFormState<Success, Failure> get state => super.state;
-
-  @override
-  set state(BondFormState<Success, Failure> newState) {
-    super.state = newState;
+  StepFormStateNotifier({bool stopOnFirstError = false}) {
+    this.stopOnFirstError = stopOnFirstError;
   }
 
   /// Builds the initial state of the form.
@@ -43,15 +36,15 @@ abstract class StepFormStateNotifier<Success, Failure extends Error>
   /// A new instance of [BondFormState] with the form fields.
   @override
   BondFormState<Success, Failure> build() {
-    ref.onDispose(dispose);
-    return BondFormState<Success, Failure>(fields: fields());
+    onDisposeWithState(dispose);
+    return trackInitialState(BondFormState<Success, Failure>(fields: fields()));
   }
-
-  /// Abstract method to handle form submission logic.
-  ///
-  /// This method should be implemented by subclasses to define what happens when the form is submitted.
-  /// It is expected to return a [Future] that completes with a [Success] result if the submission is successful,
-  /// or throws an exception if it fails.
-  @override
-  Future<Success> onSubmit();
 }
+
+/// The auto-dispose variant of [StepFormStateNotifier] from Riverpod 2.
+@Deprecated(
+  'Extend StepFormStateNotifier and declare the provider with '
+  'NotifierProvider.autoDispose. Riverpod 3 removed AutoDisposeNotifier.',
+)
+typedef AutoDisposeStepFormStateNotifier<Success, Failure extends Error> =
+    StepFormStateNotifier<Success, Failure>;

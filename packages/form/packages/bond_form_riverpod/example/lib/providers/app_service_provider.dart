@@ -8,6 +8,7 @@ class AppServiceProvider extends ServiceProvider {
   @override
   Future<void> register(GetIt it) async {
     it.registerSingletonAsync(
-        () => ValidatorLocalizations.load(const Locale('en')));
+      () => ValidatorLocalizations.load(const Locale('en')),
+    );
   }
 }
