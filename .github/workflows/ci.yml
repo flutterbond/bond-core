@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version-file: .fvmrc
+          cache: true
+
+      - name: Install dependencies (pub workspace)
+        run: flutter pub get
+
+      - name: Analyze
+        run: dart run melos run analyze --no-select
+
+      - name: Check formatting
+        run: dart run melos run format --no-select
+
+      - name: Test
+        run: dart run melos run test --no-select
+
+      - name: Publish dry run
+        run: dart run melos run publish:dry --no-select

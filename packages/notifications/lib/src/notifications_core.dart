@@ -1,4 +1,4 @@
-library notification_core;
+library;
 
 export 'core/notification_data.dart';
 export 'core/notification_provider.dart';

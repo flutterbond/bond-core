@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:bond_cache/src/helpers/common_cache_helper.dart';
 import 'package:bond_core/bond_core.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../common/custom_object.dart';
 import '../common/mock_service_provider.dart';
@@ -17,7 +17,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -27,7 +27,7 @@ void main() {
       final result = CommonCacheHelper.convertToCacheValue(value);
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -38,7 +38,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -49,7 +49,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -60,7 +60,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -71,7 +71,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -82,7 +82,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -93,7 +93,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -104,7 +104,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -115,7 +115,7 @@ void main() {
 
       final expectedData = {
         'data': jsonDecode(jsonEncode(value)),
-        'expiredAt': null
+        'expiredAt': null,
       };
       expect(result, equals(expectedData));
     });
@@ -189,8 +189,7 @@ void main() {
       expect(result, equals(model));
     });
 
-    test(
-        'Check for unregistered ResponseDecoding provider and '
+    test('Check for unregistered ResponseDecoding provider and '
         'not provided factory', () {
       final json = {'data': 'any data'};
 
@@ -201,7 +200,8 @@ void main() {
             (e) => e.message,
             'message',
             contains(
-                'No ResponseDecoding provider found for type NotRegisteredModel'),
+              'No ResponseDecoding provider found for type NotRegisteredModel',
+            ),
           ),
         ),
       );
@@ -216,9 +216,7 @@ void main() {
           isA<ArgumentError>().having(
             (e) => e.message,
             'message',
-            equals(
-              'Unhandled case for type DateTime and cached value: $data',
-            ),
+            equals('Unhandled case for type DateTime and cached value: $data'),
           ),
         ),
       );
@@ -276,9 +274,7 @@ void main() {
         expect(result, equals(expectedResult));
       });
 
-      test(
-          'throws exception if custom type is not registered and no factory provided',
-          () {
+      test('throws exception if custom type is not registered and no factory provided', () {
         final cachedValue = [
           {'data': 'NB'},
           {'data': 'SALAH'},
@@ -290,7 +286,8 @@ void main() {
               (e) => e.message,
               'message',
               contains(
-                  'No ResponseDecoding provider found for type NotRegisteredModel'),
+                'No ResponseDecoding provider found for type NotRegisteredModel',
+              ),
             ),
           ),
         );
@@ -306,9 +303,10 @@ void main() {
     });
 
     test('checkDefaultValue returns the value from a function', () {
-      final defaultValueFunction = () => 42;
-      final result =
-          CommonCacheHelper.checkDefaultValue<int>(defaultValueFunction);
+      int defaultValueFunction() => 42;
+      final result = CommonCacheHelper.checkDefaultValue<int>(
+        defaultValueFunction,
+      );
       expect(result, equals(defaultValueFunction()));
     });
 
@@ -316,27 +314,31 @@ void main() {
       final defaultValue = 'hello';
       expect(
         () => CommonCacheHelper.checkDefaultValue<int>(defaultValue),
-        throwsA(isA<ArgumentError>().having(
-          (e) => e.message,
-          'message',
-          equals(
-              'defaultValue must be of type int or a function returning int'),
-        )),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            equals(
+              'defaultValue must be of type int or a function returning int',
+            ),
+          ),
+        ),
       );
     });
 
-    test(
-        'checkDefaultValue throws ArgumentError for incorrect function return type',
-        () {
-      final defaultValueFunction = () => 'hello';
+    test('checkDefaultValue throws ArgumentError for incorrect function return type', () {
+      String defaultValueFunction() => 'hello';
       expect(
         () => CommonCacheHelper.checkDefaultValue<int>(defaultValueFunction),
-        throwsA(isA<ArgumentError>().having(
-          (e) => e.message,
-          'message',
-          contains(
-              'defaultValue must be of type int or a function returning int'),
-        )),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains(
+              'defaultValue must be of type int or a function returning int',
+            ),
+          ),
+        ),
       );
     });
   });

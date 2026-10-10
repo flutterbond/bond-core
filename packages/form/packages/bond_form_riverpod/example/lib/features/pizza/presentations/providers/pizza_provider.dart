@@ -13,101 +13,83 @@ enum Toppings {
   sausage,
   bacon,
   extraCheese,
-  blackOlives
+  blackOlives,
 }
 
- enum Branches { main, gaza, cairo }
+enum Branches { main, gaza, cairo }
 
-class PizzaOrderFormController
-    extends AutoDisposeFormStateNotifier<String, Error> with BodyConvertible {
+class PizzaOrderFormController extends FormStateNotifier<String, Error>
+    with BodyConvertible {
   // bond create form widget -- PizzaOrderFormController
 
   @override
   Map<String, FormFieldState> fields() => {
-        'customerName': TextFieldState(
-          null,
-          label: 'Your Name',
-          rules: [
-            Rules.required(),
-          ],
-        ),
-        'phoneNumber': TextFieldState(
-          null,
-          label: 'Phone Number',
-          rules: [
-            Rules.required(),
-            Rules.phoneNumber(),
-          ],
-        ),
-        'branch': DropDownFieldState<Branches>(
-          Branches.main,
-          label: 'Select Branch',
-          items: Branches.values
-              .map(
-                (e) => DropDownItemState(e, label: e.name.toUpperCase()),
-              )
-              .toList(),
-          rules: [
-            Rules.required(),
-          ],
-        ),
-        'pizzaSize': RadioGroupFieldState<PizzaSize?>(
-          value: null,
-          [
-            RadioButtonFieldState(PizzaSize.small, label: 'Small'),
-            RadioButtonFieldState(PizzaSize.medium, label: 'Medium'),
-            RadioButtonFieldState(PizzaSize.large, label: 'Large'),
-          ],
-          label: 'Pizza Size',
-          rules: [
-            Rules.required(),
-          ],
-        ),
-        'crustType': RadioGroupFieldState<CrustType?>(
-          value: null,
-          [
-            RadioButtonFieldState(CrustType.thin, label: 'Thin Crust'),
-            RadioButtonFieldState(CrustType.original, label: 'Original'),
-            RadioButtonFieldState(CrustType.deepDish, label: 'Deep Dish'),
-          ],
-          label: 'Crust Type',
-          rules: [
-            Rules.required(),
-          ],
-        ),
-        'toppings': CheckboxGroupFieldState<Toppings?>(
-          [
-            CheckboxFieldState(Toppings.mushrooms, label: 'Mushrooms'),
-            CheckboxFieldState(Toppings.pepperoni, label: 'Pepperoni'),
-            CheckboxFieldState(Toppings.onions, label: 'Onions'),
-            CheckboxFieldState(Toppings.sausage, label: 'Sausage'),
-            CheckboxFieldState(Toppings.bacon, label: 'Bacon'),
-            CheckboxFieldState(Toppings.extraCheese, label: 'Extra Cheese'),
-            CheckboxFieldState(Toppings.blackOlives, label: 'Black Olives'),
-          ],
-          label: 'Select Toppings',
-          rules: [
-            Rules.minSelected(1),
-            Rules.maxSelected(5),
-          ],
-        ),
-        'includeSides': RadioGroupFieldState<bool?>(
-          value: null,
-          [
-            RadioButtonFieldState(true, label: 'Yes'),
-            RadioButtonFieldState(false, label: 'No'),
-          ],
-          label: 'Include Sides?',
-          rules: [
-            Rules.required(),
-          ],
-        ),
-        'specialInstructions': TextFieldState(
-          null,
-          label: 'Special Instructions',
-          rules: [],
-        ),
-      };
+    'customerName': TextFieldState(
+      null,
+      label: 'Your Name',
+      rules: [Rules.required()],
+    ),
+    'phoneNumber': TextFieldState(
+      null,
+      label: 'Phone Number',
+      rules: [Rules.required(), Rules.phoneNumber()],
+    ),
+    'branch': DropDownFieldState<Branches>(
+      Branches.main,
+      label: 'Select Branch',
+      items: Branches.values
+          .map((e) => DropDownItemState(e, label: e.name.toUpperCase()))
+          .toList(),
+      rules: [Rules.required()],
+    ),
+    'pizzaSize': RadioGroupFieldState<PizzaSize?>(
+      value: null,
+      [
+        RadioButtonFieldState(PizzaSize.small, label: 'Small'),
+        RadioButtonFieldState(PizzaSize.medium, label: 'Medium'),
+        RadioButtonFieldState(PizzaSize.large, label: 'Large'),
+      ],
+      label: 'Pizza Size',
+      rules: [Rules.required()],
+    ),
+    'crustType': RadioGroupFieldState<CrustType?>(
+      value: null,
+      [
+        RadioButtonFieldState(CrustType.thin, label: 'Thin Crust'),
+        RadioButtonFieldState(CrustType.original, label: 'Original'),
+        RadioButtonFieldState(CrustType.deepDish, label: 'Deep Dish'),
+      ],
+      label: 'Crust Type',
+      rules: [Rules.required()],
+    ),
+    'toppings': CheckboxGroupFieldState<Toppings?>(
+      [
+        CheckboxFieldState(Toppings.mushrooms, label: 'Mushrooms'),
+        CheckboxFieldState(Toppings.pepperoni, label: 'Pepperoni'),
+        CheckboxFieldState(Toppings.onions, label: 'Onions'),
+        CheckboxFieldState(Toppings.sausage, label: 'Sausage'),
+        CheckboxFieldState(Toppings.bacon, label: 'Bacon'),
+        CheckboxFieldState(Toppings.extraCheese, label: 'Extra Cheese'),
+        CheckboxFieldState(Toppings.blackOlives, label: 'Black Olives'),
+      ],
+      label: 'Select Toppings',
+      rules: [Rules.minSelected(1), Rules.maxSelected(5)],
+    ),
+    'includeSides': RadioGroupFieldState<bool?>(
+      value: null,
+      [
+        RadioButtonFieldState(true, label: 'Yes'),
+        RadioButtonFieldState(false, label: 'No'),
+      ],
+      label: 'Include Sides?',
+      rules: [Rules.required()],
+    ),
+    'specialInstructions': TextFieldState(
+      null,
+      label: 'Special Instructions',
+      rules: [],
+    ),
+  };
 
   @override
   void fieldTransformers(TransformersRegistry registry) {
@@ -130,8 +112,9 @@ class PizzaOrderFormController
         .checkboxValues<Toppings?>('toppings')
         .map((e) => e.toString())
         .join(', ');
-    final includeSides =
-        state.radioGroupValue<bool?>('includeSides') == true ? 'Yes' : 'No';
+    final includeSides = state.radioGroupValue<bool?>('includeSides') == true
+        ? 'Yes'
+        : 'No';
     final specialInstructions =
         state.textFieldValue('specialInstructions') ?? 'None';
 
@@ -141,10 +124,8 @@ class PizzaOrderFormController
 
     // Normally, you'd send these values to an API or a database here.
     // For demonstration, we'll just return a summary string.
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        return '''
+    return Future.delayed(const Duration(seconds: 2), () {
+      return '''
         Customer Name: $customerName
         Phone Number: $phoneNumber
         Branch: $branch
@@ -155,12 +136,12 @@ class PizzaOrderFormController
         Include Sides: $includeSides
         Special Instructions: $specialInstructions
       ''';
-      },
-    );
+    });
   }
 }
 
-final pizzaOrderProvider = NotifierProvider.autoDispose<
-    PizzaOrderFormController, BondFormState<String, Error>>(
-  PizzaOrderFormController.new,
-);
+final pizzaOrderProvider =
+    NotifierProvider.autoDispose<
+      PizzaOrderFormController,
+      BondFormState<String, Error>
+    >(PizzaOrderFormController.new);

@@ -11,17 +11,8 @@ class CheckboxFieldState<T> extends FormFieldState<T> {
   /// - [value]: The initial value of the checkbox (checked or unchecked).
   /// - [label]: The label or name of the checkbox form field (required).
   /// - [rules]: The list of validation rules to apply to the checkbox field (default is an empty list).
-  CheckboxFieldState(
-    T value, {
-    required String label,
-    String? error,
-    List<ValidationRule<T>> rules = const [],
-  }) : super(
-          value: value,
-          label: label,
-          error: error,
-          rules: rules,
-        );
+  CheckboxFieldState(T value, {required super.label, super.error, super.rules})
+    : super(value: value);
 
   @override
   CheckboxFieldState<T> copyWith({
@@ -51,9 +42,7 @@ class CheckboxFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  CheckboxFieldState<T> copyWithNullable({
-    T? value,
-  }) {
+  CheckboxFieldState<T> copyWithNullable({T? value}) {
     return CheckboxFieldState<T>(
       value as T,
       error: error,

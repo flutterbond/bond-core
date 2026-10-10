@@ -53,8 +53,9 @@ mixin FieldChangeTrackingMixin<Success, Failure extends Error>
 
   /// Remove a listener for a specific field's changes
   void removeFieldListener<T>(String fieldName, void Function(T) listener) {
-    _fieldListeners[fieldName]
-        ?.removeWhere((typedListener) => typedListener.callback == listener);
+    _fieldListeners[fieldName]?.removeWhere(
+      (typedListener) => typedListener.callback == listener,
+    );
     if (_fieldListeners[fieldName]?.isEmpty ?? false) {
       _fieldListeners.remove(fieldName);
     }

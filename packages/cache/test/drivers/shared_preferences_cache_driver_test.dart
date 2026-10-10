@@ -3,40 +3,39 @@ import 'dart:convert';
 import 'package:bond_cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {
   @override
-  String? getString(String? key) => super.noSuchMethod(
-        Invocation.method(#get, [key]),
-      );
+  String? getString(String? key) =>
+      super.noSuchMethod(Invocation.method(#get, [key]));
 
   @override
   Future<bool> setString(String key, String value) => super.noSuchMethod(
-        Invocation.method(#setString, [key, value]),
-        returnValue: Future.value(false),
-        returnValueForMissingStub: Future.value(false),
-      );
+    Invocation.method(#setString, [key, value]),
+    returnValue: Future.value(false),
+    returnValueForMissingStub: Future.value(false),
+  );
 
   @override
   bool containsKey(String key) => super.noSuchMethod(
-        Invocation.method(#containsKey, [key]),
-        returnValue: false,
-      );
+    Invocation.method(#containsKey, [key]),
+    returnValue: false,
+  );
 
   @override
   Future<bool> remove(String key) => super.noSuchMethod(
-        Invocation.method(#remove, [key]),
-        returnValue: Future.value(false),
-        returnValueForMissingStub: Future.value(false),
-      );
+    Invocation.method(#remove, [key]),
+    returnValue: Future.value(false),
+    returnValueForMissingStub: Future.value(false),
+  );
 
   @override
   Future<bool> clear() => super.noSuchMethod(
-        Invocation.method(#remove, []),
-        returnValue: Future.value(false),
-        returnValueForMissingStub: Future.value(false),
-      );
+    Invocation.method(#remove, []),
+    returnValue: Future.value(false),
+    returnValueForMissingStub: Future.value(false),
+  );
 }
 
 void main() {

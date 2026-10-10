@@ -1,13 +1,13 @@
 import 'package:bond_cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 // Mock class for simulating network fetch or database read operations
 class MockFetchFunction extends Mock {
   Future<String> fetchUserFromApi() => super.noSuchMethod(
-        Invocation.method(#fetchUserFromApi, []),
-        returnValue: Future.value(''),
-      );
+    Invocation.method(#fetchUserFromApi, []),
+    returnValue: Future.value(''),
+  );
 }
 
 void main() {
@@ -23,9 +23,8 @@ void main() {
       final key = 'user';
       final fetchedValue = 'SALAH';
 
-      when(mockFunction.fetchUserFromApi()).thenAnswer(
-        (_) async => fetchedValue,
-      );
+      when(mockFunction.fetchUserFromApi())
+          .thenAnswer((_) async => fetchedValue);
 
       // Call remember method
       await Cache.remember<String>(
@@ -38,7 +37,7 @@ void main() {
       verify(mockFunction.fetchUserFromApi()).called(1);
 
       // Check if value is stored
-      final storedValue = await Cache.get<String>(key);
+      final storedValue = Cache.get<String>(key);
       expect(storedValue, equals(fetchedValue));
     });
 
@@ -53,23 +52,22 @@ void main() {
       );
 
       // Initially check the value is there
-      var storedValue = await Cache.get<String?>(key);
+      var storedValue = Cache.get<String?>(key);
       expect(storedValue, equals(value));
 
       // Wait for more than the expiration duration
       await Future.delayed(Duration(milliseconds: 200));
 
       // Check that the value has expired
-      storedValue = await Cache.get<String?>(key);
+      storedValue = Cache.get<String?>(key);
       expect(storedValue, isNull);
     });
 
     test('rememberForever stores value indefinitely', () async {
       final key = 'user';
       final fetchedValue = 'SALAH';
-      when(mockFunction.fetchUserFromApi()).thenAnswer(
-        (_) async => fetchedValue,
-      );
+      when(mockFunction.fetchUserFromApi())
+          .thenAnswer((_) async => fetchedValue);
 
       // Call rememberForever method
       await Cache.rememberForever<String>(key, mockFunction.fetchUserFromApi);
@@ -78,7 +76,7 @@ void main() {
       verify(mockFunction.fetchUserFromApi()).called(1);
 
       // Check if value is stored
-      final storedValue = await Cache.get<String>(key);
+      final storedValue = Cache.get<String>(key);
       expect(storedValue, equals(fetchedValue));
     });
   });

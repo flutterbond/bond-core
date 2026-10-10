@@ -1,4 +1,4 @@
-library push_notifications;
+library;
 
 export 'push_notifications/actionable_push_notification.dart';
 export 'push_notifications/push_notification.dart';

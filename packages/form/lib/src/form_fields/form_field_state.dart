@@ -51,7 +51,7 @@ abstract class FormFieldState<T> {
   /// Returns an error message if validation fails, otherwise returns `null`.
   @nonVirtual
   String? validate(Map<String, FormFieldState> fields) {
-    bool _isBlank(dynamic value) {
+    bool isBlank(dynamic value) {
       if (value == null) return true;
       if (value is String) return value.trim().isEmpty;
       if (value is Iterable) return value.isEmpty;
@@ -68,7 +68,7 @@ abstract class FormFieldState<T> {
     final requiredIfRule = rules.whereType<RequiredIf>().firstOrNull;
     if (requiredIfRule != null) {
       final requiredNow = requiredIfRule.isRequired(fields);
-      if (!requiredNow && _isBlank(value)) {
+      if (!requiredNow && isBlank(value)) {
         return null; // not required + empty => OK, skip other rules
       }
     }
@@ -121,13 +121,8 @@ abstract class FormFieldState<T> {
   /// A null-tolerant version of `copyWith`, allowing you to **explicitly** set fields to `null`.
   ///
   /// This is useful for form reset behaviors like clearing a field's value or removing its error.
-  FormFieldState<T> copyWithNullable({
-    T? value,
-  }) {
-    ;
-    return copyWith(
-      value: value,
-    );
+  FormFieldState<T> copyWithNullable({T? value}) {
+    return copyWith(value: value);
   }
 
   @override

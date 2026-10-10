@@ -15,10 +15,8 @@ class FileTypeRule extends ValidationRule<File?> {
   ///
   /// - [allowedMimeTypes] The list of allowed mime types (required).
   /// - [message] A custom validation message (optional) to be displayed when the validation fails.
-  FileTypeRule({
-    required this.allowedMimeTypes,
-    String? message,
-  }) : super(message);
+  FileTypeRule({required this.allowedMimeTypes, String? message})
+    : super(message);
 
   @override
   String validatorMessage(String fieldName) =>

@@ -10,8 +10,8 @@ class DropDownItemState<T> extends FormFieldState<T> {
   ///
   /// - [value]: The value associated with the dropdown item (required).
   /// - [label]: The label or name of the dropdown item (required).
-  DropDownItemState(T value, {required String label})
-      : super(value: value, label: label, rules: const []);
+  DropDownItemState(T value, {required super.label})
+    : super(value: value, rules: const []);
 
   @override
   DropDownItemState<T> copyWith({

@@ -1,17 +1,17 @@
 import 'package:bond_cache/bond_cache.dart';
 import 'package:bond_core/bond_core.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'common/mock_service_provider.dart';
 import 'common/not_registered_model.dart';
 import 'common/registered_model.dart';
 
 void main() {
-  final _mockedServiceProvider = MockServiceProvider();
+  final mockedServiceProvider = MockServiceProvider();
 
   setUp(() {
     Cache.cacheDriver = BondCache(driver: InMemoryCacheDriver());
-    appProviders.add(_mockedServiceProvider);
+    appProviders.add(mockedServiceProvider);
   });
 
   tearDown(() => appProviders.clear());

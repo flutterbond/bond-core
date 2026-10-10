@@ -105,8 +105,10 @@ class BondCache with CacheObservable {
   /// - Returns: A [Future] that completes with a [bool] indicating the success of the operation.
   /// - Throws: [ArgumentError] if the value type is not supported.
   Future<bool> put<T>(String key, T value, [Duration? expiredAfter]) async {
-    final result =
-        CommonCacheHelper.convertToCacheValue<T>(value, expiredAfter);
+    final result = CommonCacheHelper.convertToCacheValue<T>(
+      value,
+      expiredAfter,
+    );
     final success = await driver.store(key, result);
     if (success) {
       notifyObservers<T>(key, value);

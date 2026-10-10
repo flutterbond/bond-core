@@ -22,10 +22,12 @@ class DateBefore extends ValidationRule<DateTime> {
   /// - [format]: The format of the date string (default is 'yyyy-MM-dd').
   /// - [message]: A custom validation message (optional) to be displayed
   ///   when the validation fails.
-  DateBefore.fromString(String dateStr,
-      {String? format = 'yyyy-MM-dd', String? message})
-      : date = DateFormat(format).parse(dateStr),
-        super(message);
+  DateBefore.fromString(
+    String dateStr, {
+    String? format = 'yyyy-MM-dd',
+    String? message,
+  }) : date = DateFormat(format).parse(dateStr),
+       super(message);
 
   @override
   String validatorMessage(String fieldName) =>

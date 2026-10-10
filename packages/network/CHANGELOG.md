@@ -1,4 +1,41 @@
 ### Changelog
+## 0.1.0
+
+### Breaking
+- Requires Dart 3.13 and Flutter 3.47 or newer.
+- Depends on `bond_core: ^0.1.0` and `bond_cache: ^0.1.0`.
+- `equatable` range is now `>=2.0.7 <4.0.0`. With equatable 3, `==` on models no longer compares
+  `runtimeType`, so two different `Equatable` subclasses with equal `props` are equal.
+- `package_info_plus` range is now `>=8.2.1 <11.0.0` (package_info_plus 10 needs iOS 13+).
+- `faker` is no longer a dependency. `ServerExceptionFactory.create` fills a missing `code`/`message`
+  with a random alphanumeric string from `dart:math`.
+- `json_serializable` moved to `dev_dependencies`. Apps that run `build_runner` must depend on it themselves.
+- `ApiClient.postUri` takes a `Uri` and `ApiClient.delete` takes a `String` path (both were untyped;
+  Dio already required these types at runtime).
+- `BondFire()` returns a new instance on every call (since 0.0.11+11). Register it in get_it as a
+  lazy singleton if you need one shared client.
+
+### Fixed
+- `Meta.from` was annotated `@JsonKey(name: 'last_page')`, so regenerating the model made it read
+  `last_page`. The annotation is removed and `meta.g.dart` regenerated; `from` reads the `from` key.
+- `ServerError.fromJson` threw `type 'Null' is not a subtype of type 'String'` for error bodies
+  without `message`/`code` (e.g. an AWS Lambda function URL's 403 `{"Message": null}`), so the
+  `errorFactory` crash replaced the real error. Missing values now default to
+  `'Unexpected server error'` / `'unknown'`.
+
+### Changed
+- `dio` constraint `^5.8.0`.
+- Library names removed (`library;`), lint fixes for `flutter_lints` 6, code formatted with the Dart 3.13 formatter.
+- CHANGELOG 0.0.11+4: the new policy is `CachePolicy.cacheOnly` (it was listed as `cacheFirst`).
+
+## 0.0.11+11
+- Remove the bond fire singleton factory.
+
+## 0.0.11+9
+### Fixed
+- Fixed cache writes not completing before `execute()` returns in tests.
+  - Added microtask flush after cache writes to ensure `FlutterSecureStorage` mock operations complete synchronously.
+  - This resolves flaky tests where assertions ran before cache was updated.
 
 ## 0.0.11+4
 ### Added
@@ -9,7 +46,7 @@
 - Fix `cache` method to return `T` instead of `dynamic`.
 - Fix `_factory` method should take response after `_dataTransformer` done.
 - Improve cache handling in `GetBondApiRequest`.
-- Add new CachePolicy `cacheFirst` to read from cache first, if not found then read from network and save to cache.
+- Add new CachePolicy `cacheOnly` to read from cache first, if not found then read from network and save to cache.
 
 ## 0.0.10
 ### Added

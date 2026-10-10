@@ -1,5 +1,5 @@
 /// A library for working with forms and form validation.
-library form;
+library;
 
 export 'src/base.dart';
 export 'src/extensions.dart';

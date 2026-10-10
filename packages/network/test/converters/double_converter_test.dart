@@ -1,5 +1,5 @@
 import 'package:bond_network/bond_network.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final converter = DoubleConverter();

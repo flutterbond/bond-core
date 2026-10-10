@@ -1,4 +1,4 @@
-library bond_core;
+library;
 
 export 'src/app.dart';
 export 'src/injection.dart';

@@ -7,9 +7,7 @@ import 'helpers/common_cache_helper.dart';
 /// A static class providing methods to interact with the caching system.
 class Cache {
   /// The cache driver used for caching operations.
-  static BondCache cacheDriver = BondCache(
-    driver: sl<CacheDriver>(),
-  );
+  static BondCache cacheDriver = BondCache(driver: sl<CacheDriver>());
 
   /// Retrieves a value from the cache with the specified [key].
   ///
@@ -19,7 +17,7 @@ class Cache {
   /// - Parameter [key] The unique identifier for the cached value.
   /// - Parameter [defaultValue] The value to return if the [key] is not found in the cache.
   /// - Parameter [fromJsonFactory] optional factory function that takes a
-  ///   Map<String, dynamic> (representing the JSON data) and returns an instance of type T. ,
+  ///   `Map<String, dynamic>` (representing the JSON data) and returns an instance of type T.
   /// - Returns: The cached value if [key] is found, otherwise [defaultValue].
   /// - Throws: An error if there is an issue during the cache retrieval process.
   /// Usage:
@@ -30,12 +28,11 @@ class Cache {
     String key, {
     dynamic defaultValue,
     Factory<T>? fromJsonFactory,
-  }) =>
-      cacheDriver.get<T>(
-        key,
-        defaultValue: defaultValue,
-        fromJsonFactory: fromJsonFactory,
-      );
+  }) => cacheDriver.get<T>(
+    key,
+    defaultValue: defaultValue,
+    fromJsonFactory: fromJsonFactory,
+  );
 
   /// Retrieves a list of cached data associated with the specified [key].
   /// - Parameter [key] The key associated with the cached data.
@@ -51,12 +48,11 @@ class Cache {
     String key, {
     dynamic defaultValue,
     Factory<T>? fromJsonFactory,
-  }) =>
-      cacheDriver.getAll<T>(
-        key,
-        defaultValue: defaultValue,
-        fromJsonFactory: fromJsonFactory,
-      );
+  }) => cacheDriver.getAll<T>(
+    key,
+    defaultValue: defaultValue,
+    fromJsonFactory: fromJsonFactory,
+  );
 
   /// Checks if a value with the specified [key] exists in the cache.
   ///
@@ -92,9 +88,11 @@ class Cache {
   /// ```dart
   /// var success = Cache.putAll<User>("users", myUsers, expiredAfter: Duration(days: 1));
   /// ```
-  static Future<bool> putAll<T>(String key, List<T> value,
-          {Duration? expiredAfter}) =>
-      cacheDriver.putAll<T>(key, value, expiredAfter);
+  static Future<bool> putAll<T>(
+    String key,
+    List<T> value, {
+    Duration? expiredAfter,
+  }) => cacheDriver.putAll<T>(key, value, expiredAfter);
 
   /// Stores a value in the cache with the specified [key] if the key does not exist.
   ///
@@ -110,8 +108,11 @@ class Cache {
   /// ```dart
   /// var success = Cache.add<User>("user", myUser, expiredAfter: Duration(days: 1));
   /// ```
-  static Future<bool> add<T>(String key, T value,
-      {Duration? expiredAfter}) async {
+  static Future<bool> add<T>(
+    String key,
+    T value, {
+    Duration? expiredAfter,
+  }) async {
     final exist = has(key);
     if (!exist) return put<T>(key, value, expiredAfter: expiredAfter);
     return false;
@@ -182,7 +183,7 @@ class Cache {
   ///
   /// - Parameter [key] The unique identifier for the cached value.
   /// - Parameter [defaultValue] The value to return if the [key] is not found in the cache.
-  /// - Parameter [fromJsonFactory] optional factory function that takes a Map<String, dynamic> (representing the JSON data) and returns an instance of type T.
+  /// - Parameter [fromJsonFactory] optional factory function that takes a `Map<String, dynamic>` (representing the JSON data) and returns an instance of type T.
   /// - Returns: The cached value if [key] is found, otherwise [defaultValue].
   /// - Throws: An error if there is an issue during the cache retrieval or removal process.
   /// Usage:

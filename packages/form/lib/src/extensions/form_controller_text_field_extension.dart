@@ -6,8 +6,11 @@ import 'package:flutter/widgets.dart' as widgets;
 /// This extension provides access to the `TextEditingController` for a field,
 /// ensures it's observed for changes, and allows safe disposal of listeners.
 
-extension TextFieldFormController<Success, Failure extends Error,
-        State extends BaseBondFormState<Success, Failure>>
+extension TextFieldFormController<
+  Success,
+  Failure extends Error,
+  State extends BaseBondFormState<Success, Failure>
+>
     on BaseFormController<Success, Failure, State> {
   /// Retrieves the [TextEditingController] for a given text field and ensures it is observed.
   ///
@@ -43,12 +46,14 @@ extension TextFieldFormController<Success, Failure extends Error,
   ///   - [fieldName]: The name of the text field to bind.
   ///   - [controller]: The [TextEditingController] instance to observe.
   void _observeTextField(
-      String fieldName, widgets.TextEditingController controller) {
+    String fieldName,
+    widgets.TextEditingController controller,
+  ) {
     if (textFieldListeners.containsKey(fieldName)) return;
 
-    final listener = () {
+    void listener() {
       updateValue<TextFieldState, String?>(fieldName, controller.text);
-    };
+    }
 
     textFieldListeners[fieldName] = listener;
     controller.addListener(listener);
@@ -83,7 +88,7 @@ extension TextFieldFormController<Success, Failure extends Error,
   void _observeTextFieldFocus(String fieldName, widgets.FocusNode focusNode) {
     if (textFieldFocusListeners.containsKey(fieldName)) return;
 
-    final listener = () {
+    void listener() {
       if (focusNode.hasFocus) {
         // Optionally, you can handle focus gain here
         // nothing to do here for now
@@ -95,12 +100,10 @@ extension TextFieldFormController<Success, Failure extends Error,
           final error = field.validate(state.fields);
           updatedField = updatedField.updateError(error);
           state.fields[fieldName] = updatedField;
-          state = state.copyWith(
-            fields: Map.from(state.fields),
-          );
+          state = state.copyWith(fields: Map.from(state.fields));
         }
       }
-    };
+    }
 
     textFieldFocusListeners[fieldName] = listener;
     focusNode.addListener(listener);

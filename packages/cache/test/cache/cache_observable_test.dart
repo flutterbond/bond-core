@@ -1,6 +1,6 @@
 import 'package:bond_cache/src/cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers/mock_observer.dart';
 
@@ -137,8 +137,7 @@ void main() {
       verify(observer.onUpdate(key, 42)).called(1);
     });
 
-    test(
-        'Observer Throws ArgumentError on type mismatch'
+    test('Observer Throws ArgumentError on type mismatch'
         ' between notified data and observer', () async {
       final key = 'test_key';
 

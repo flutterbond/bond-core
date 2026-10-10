@@ -1,3 +1,13 @@
+## 0.2.0
+
+### Breaking
+- Requires Dart 3.13 and Flutter 3.47 or newer.
+- Depends on `bond_core: ^0.1.0` and `bond_network: ^0.1.0` (material_ui based `bond_core`,
+  `equatable` 3 / `package_info_plus` 10 ranges in `bond_network`).
+
+### Changed
+- Library names removed (`library;`).
+
 ## 0.1.0
 
 ### Breaking Changes

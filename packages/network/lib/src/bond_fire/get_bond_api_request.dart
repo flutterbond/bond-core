@@ -15,10 +15,7 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
   /// - Parameters:
   ///   - [dio]: The Dio client for executing HTTP requests.
   ///   - [path]: The endpoint URL path for the GET request.
-  GetBondApiRequest(
-    Dio dio,
-    String path,
-  ) : super(dio, path, method: 'GET');
+  GetBondApiRequest(super.dio, super.path) : super(method: 'GET');
 
   /// Configures caching for the GET request.
   ///
@@ -46,12 +43,14 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
   @override
   Future<T> execute() async {
     if (_cacheKey != null) {
-      final hasCache = await Cache.has(_cacheKey!);
+      final hasCache = Cache.has(_cacheKey!);
       switch (_cachePolicy) {
         case CachePolicy.cacheOnly:
           if (hasCache) {
-            final cachedValue =
-                await Cache.get<T?>(_cacheKey!, fromJsonFactory: _factory);
+            final cachedValue = Cache.get<T?>(
+              _cacheKey!,
+              fromJsonFactory: _factory,
+            );
             if (cachedValue != null) {
               return cachedValue; // Skip network entirely
             }
@@ -59,8 +58,10 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
           return await _executeAndCache();
         case CachePolicy.cacheElseNetwork:
           if (hasCache) {
-            final cachedValue =
-                await Cache.get<T?>(_cacheKey!, fromJsonFactory: _factory);
+            final cachedValue = Cache.get<T?>(
+              _cacheKey!,
+              fromJsonFactory: _factory,
+            );
             if (cachedValue == null) {
               return await _executeAndCache();
             }
@@ -74,8 +75,10 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
             return await _executeAndCache();
           } catch (_) {
             if (hasCache) {
-              final cachedValue =
-                  await Cache.get<T?>(_cacheKey!, fromJsonFactory: _factory);
+              final cachedValue = Cache.get<T?>(
+                _cacheKey!,
+                fromJsonFactory: _factory,
+              );
               if (cachedValue != null) {
                 return cachedValue;
               }
@@ -97,7 +100,8 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
       return _executeCacheThenNetwork();
     } else {
       throw UnsupportedError(
-          'Use execute method for cache policies other than cacheThenNetwork');
+        'Use execute method for cache policies other than cacheThenNetwork',
+      );
     }
   }
 
@@ -109,10 +113,12 @@ class GetBondApiRequest<T extends Jsonable> extends BaseBondApiRequest<T> {
 
   Stream<T> _executeCacheThenNetwork() async* {
     if (_cacheKey != null) {
-      final hasCache = await Cache.has(_cacheKey!);
+      final hasCache = Cache.has(_cacheKey!);
       if (hasCache) {
-        final cachedValue =
-            Cache.get<T?>(_cacheKey!, fromJsonFactory: _factory);
+        final cachedValue = Cache.get<T?>(
+          _cacheKey!,
+          fromJsonFactory: _factory,
+        );
         if (cachedValue != null) {
           yield cachedValue;
         }

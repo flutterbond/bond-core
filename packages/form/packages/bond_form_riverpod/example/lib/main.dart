@@ -6,9 +6,7 @@ import 'bond_app.dart';
 import 'config/app.dart';
 
 void main() => run(
-      () => const ProviderScope(
-        child: BondApp(),
-      ),
-      tasks: RunAppTasks(),
-      providers: providers,
-    );
+  () => const ProviderScope(child: BondApp()),
+  tasks: RunAppTasks(),
+  providers: providers,
+);

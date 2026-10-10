@@ -10,10 +10,8 @@ class RadioButtonFieldState<T> extends FormFieldState<T> {
   ///
   /// - [value]: The initial value of the radio button field.
   /// - [label]: The label or name of the radio button form field (required).
-  RadioButtonFieldState(
-    T value, {
-    required String label,
-  }) : super(value: value, label: label, rules: []);
+  RadioButtonFieldState(T value, {required super.label})
+    : super(value: value, rules: []);
 
   @override
   RadioButtonFieldState<T> copyWith({

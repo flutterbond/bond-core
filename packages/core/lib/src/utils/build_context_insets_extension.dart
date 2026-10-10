@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 /// Extension methods on [BuildContext] to provide easier access to [MediaQuery] padding properties.
 extension InsetsContext on BuildContext {

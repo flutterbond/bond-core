@@ -48,7 +48,7 @@ extension TypeExtensions on Type {
       'List<int>',
       'List<double>',
       'List<String>',
-      'List<bool>'
+      'List<bool>',
     };
 
     // Check if the non-nullable type string is in the set of primitive types
@@ -79,8 +79,9 @@ class CommonCacheHelper {
   static Json convertToCacheValue<T>(T value, [Duration? expiredAfter]) {
     try {
       final decodedValue = jsonDecode(jsonEncode(value));
-      final expiredAt =
-          expiredAfter == null ? null : DateTime.now().add(expiredAfter);
+      final expiredAt = expiredAfter == null
+          ? null
+          : DateTime.now().add(expiredAfter);
       final data = CacheData(data: decodedValue, expiredAt: expiredAt);
       return data.toJson();
     } catch (_) {
@@ -149,7 +150,8 @@ class CommonCacheHelper {
 
     // Throw an error if T is not a primitive type and provider.responseConvert returns null
     throw ArgumentError(
-        'Unhandled case for type $T and cached value: $cachedValue');
+      'Unhandled case for type $T and cached value: $cachedValue',
+    );
   }
 
   /// Converts a list of cached data to a list of type [T].

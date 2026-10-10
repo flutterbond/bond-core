@@ -16,16 +16,11 @@ class RadioGroupFieldState<T> extends FormFieldState<T> {
   /// - [rules]: The list of validation rules to apply to the radio button group field (default is an empty list).
   RadioGroupFieldState(
     this.radioButtons, {
-    required String label,
-    required T value,
-    String? error,
-    List<ValidationRule<T>> rules = const [],
-  }) : super(
-          value: value,
-          label: label,
-          error: error,
-          rules: rules,
-        );
+    required super.label,
+    required super.value,
+    super.error,
+    super.rules,
+  });
 
   @override
   RadioGroupFieldState<T> copyWith({
@@ -58,9 +53,7 @@ class RadioGroupFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  RadioGroupFieldState<T> copyWithNullable({
-    T? value,
-  }) {
+  RadioGroupFieldState<T> copyWithNullable({T? value}) {
     return RadioGroupFieldState<T>(
       radioButtons,
       value: value as T,

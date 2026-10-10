@@ -13,15 +13,10 @@ class DateFieldState extends FormFieldState<DateTime?> {
   /// - [rules]: The list of validation rules to apply to the date field (default is an empty list).
   DateFieldState(
     DateTime? value, {
-    required String label,
-    String? error,
-    List<ValidationRule<DateTime?>> rules = const [],
-  }) : super(
-          value: value,
-          label: label,
-          error: error,
-          rules: rules,
-        );
+    required super.label,
+    super.error,
+    super.rules = const [],
+  }) : super(value: value);
 
   @override
   DateFieldState copyWith({
@@ -42,23 +37,11 @@ class DateFieldState extends FormFieldState<DateTime?> {
 
   @override
   DateFieldState updateError(String? error) {
-    return DateFieldState(
-      value,
-      error: error,
-      label: label,
-      rules: rules,
-    );
+    return DateFieldState(value, error: error, label: label, rules: rules);
   }
 
   @override
-  DateFieldState copyWithNullable({
-    DateTime? value,
-  }) {
-    return DateFieldState(
-      value,
-      error: error,
-      label: label,
-      rules: rules,
-    );
+  DateFieldState copyWithNullable({DateTime? value}) {
+    return DateFieldState(value, error: error, label: label, rules: rules);
   }
 }

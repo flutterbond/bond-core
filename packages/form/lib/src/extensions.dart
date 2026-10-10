@@ -1,4 +1,4 @@
-library extensions;
+library;
 
 export 'extensions/async_field_form_controller.dart';
 export 'extensions/form_controller_extension.dart';

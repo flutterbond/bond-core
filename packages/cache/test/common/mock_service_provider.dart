@@ -8,6 +8,6 @@ class MockServiceProvider extends Mock
     implements ServiceProvider {
   @override
   Map<Type, JsonFactory> get factories => {
-        RegisteredModel: RegisteredModel.fromJson,
-      };
+    RegisteredModel: RegisteredModel.fromJson,
+  };
 }

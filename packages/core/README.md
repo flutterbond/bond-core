@@ -32,7 +32,7 @@ Bond Core offers a comprehensive set of utilities and integrations designed to s
 
 - **Localization**: Extensions to help retrieve locale details and support for multilingual applications.
 
-- **Comprehensive Documentation**: Navigate to [Bond Docs](https://github.com/onestudio-co/bond-docs) for detailed guides, tutorials, and API references.
+- **Comprehensive Documentation**: Navigate to [Bond Docs](https://github.com/flutterbond/bond-docs) for detailed guides, tutorials, and API references.
 
 This is just a glimpse of what Bond Core offers. Dive into the package and explore the extensive features that can expedite your Flutter development.
 
@@ -90,7 +90,7 @@ final List<ServiceProvider> providers = [
 ## Documentation
 
 Comprehensive documentation for the Bond Core package, as well as other parts of the Bond ecosystem, is available in
-our [official documentation repository](https://github.com/onestudio-co/bond-docs).
+our [official documentation repository](https://github.com/flutterbond/bond-docs).
 
 We highly recommend browsing through the documentation to get the most out of Bond Core and associated packages.
 

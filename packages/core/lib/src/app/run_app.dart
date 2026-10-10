@@ -14,19 +14,16 @@ void run(
   required RunTasks tasks,
   required List<ServiceProvider> providers,
 }) {
-  runZonedGuarded<Future<void>>(
-    () async {
-      final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-      await init(providers);
+  runZonedGuarded<Future<void>>(() async {
+    final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+    await init(providers);
 
-      await tasks.beforeRun(widgetsBinding);
+    await tasks.beforeRun(widgetsBinding);
 
-      runApp(app());
+    runApp(app());
 
-      await tasks.afterRun();
-    },
-    tasks.onError,
-  );
+    await tasks.afterRun();
+  }, tasks.onError);
 }
 
 /// Represents a set of tasks to run before and after the main Flutter application starts.

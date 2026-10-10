@@ -23,14 +23,8 @@ class ListMResponse<T extends Model, G extends Jsonable> extends Equatable
   factory ListMResponse.fromJson(Map<String, dynamic> json) =>
       _$ListMResponseFromJson(json);
 
-  ListMResponse<T, G> copyWith({
-    List<T>? data,
-    G? meta,
-  }) {
-    return ListMResponse<T, G>(
-      data ?? this.data,
-      meta ?? this.meta,
-    );
+  ListMResponse<T, G> copyWith({List<T>? data, G? meta}) {
+    return ListMResponse<T, G>(data ?? this.data, meta ?? this.meta);
   }
 
   @override

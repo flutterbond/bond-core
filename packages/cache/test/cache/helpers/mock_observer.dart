@@ -8,15 +8,11 @@ class MockObserver<T> extends Mock implements CacheObserver<T> {
 
   @override
   void onDelete(String key) {
-    super.noSuchMethod(
-      Invocation.method(#onDelete, [key]),
-    );
+    super.noSuchMethod(Invocation.method(#onDelete, [key]));
   }
 
   @override
   void onUpdate(String key, T? newValue) {
-    super.noSuchMethod(
-      Invocation.method(#onUpdate, [key, newValue]),
-    );
+    super.noSuchMethod(Invocation.method(#onUpdate, [key, newValue]));
   }
 }

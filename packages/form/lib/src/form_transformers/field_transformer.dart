@@ -11,9 +11,7 @@ typedef FieldTransformer<T, G extends Object?> = G Function(T value);
 class FieldTransformerFactory<T, G extends Object?> {
   final FieldTransformer<T, G> transformationFunction;
 
-  FieldTransformerFactory({
-    required this.transformationFunction,
-  });
+  FieldTransformerFactory({required this.transformationFunction});
 
   /// Transforms a value using the wrapped transformation function.
   ///

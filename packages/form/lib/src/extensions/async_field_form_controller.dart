@@ -23,19 +23,22 @@ extension AsyncFieldFormController on BaseFormController {
   Future<T> resolveAsyncField<T>(String fieldName) {
     final fieldState = state.asyncHiddenField<T>(fieldName);
 
-    return fieldState.pendingValue.then((resolvedValue) {
-      // Update the field with the resolved value and clear any previous error
-      state.fields[fieldName] =
-          fieldState.copyWith(value: resolvedValue).updateError(null);
-      return resolvedValue;
-    }).catchError((error, stack) {
-      log(
-        '⚠️ Hidden Async field $fieldName failed to resolve: $error',
-        stackTrace: stack,
-      );
-      state.fields[fieldName] = fieldState.updateError(error.toString());
-      throw error; // Re-throw so caller can catch
-    });
+    return fieldState.pendingValue
+        .then((resolvedValue) {
+          // Update the field with the resolved value and clear any previous error
+          state.fields[fieldName] = fieldState
+              .copyWith(value: resolvedValue)
+              .updateError(null);
+          return resolvedValue;
+        })
+        .catchError((error, stack) {
+          log(
+            '⚠️ Hidden Async field $fieldName failed to resolve: $error',
+            stackTrace: stack,
+          );
+          state.fields[fieldName] = fieldState.updateError(error.toString());
+          throw error; // Re-throw so caller can catch
+        });
   }
 }
 
@@ -47,10 +50,10 @@ extension XAsyncRadioGroupFieldState<T> on AsyncRadioGroupFieldState<T?> {
     // Filter out null values and map them to RadioButtonFieldState
     return resolvedItems
         .where((item) => item.value != null)
-        .map((item) => RadioButtonFieldState<T>(
-              item.value as T,
-              label: item.label,
-            ))
+        .map(
+          (item) =>
+              RadioButtonFieldState<T>(item.value as T, label: item.label),
+        )
         .toList();
   }
 }
@@ -63,10 +66,7 @@ extension XAsyncDropDownFieldState<T> on AsyncDropDownFieldState<T?> {
     // Filter out null values and map them to DropDownItemState
     return resolvedItems
         .where((item) => item.value != null)
-        .map((item) => DropDownItemState<T>(
-              item.value as T,
-              label: item.label,
-            ))
+        .map((item) => DropDownItemState<T>(item.value as T, label: item.label))
         .toList();
   }
 }

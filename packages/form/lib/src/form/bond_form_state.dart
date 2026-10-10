@@ -10,16 +10,11 @@ class BondFormState<Success, Failure extends Error>
   /// - [success] The success result of the form submission.
   /// - [failure] The failure result of the form submission.
   BondFormState({
-    required Map<String, FormFieldState> fields,
-    BondFormStateStatus status = BondFormStateStatus.pristine,
-    Success? success,
-    Failure? failure,
-  }) : super(
-          fields: fields,
-          status: status,
-          success: success,
-          failure: failure,
-        );
+    required super.fields,
+    super.status,
+    super.success,
+    super.failure,
+  });
 
   /// Creates a copy of this [BondFormState] with optional parameter overrides.
   @override

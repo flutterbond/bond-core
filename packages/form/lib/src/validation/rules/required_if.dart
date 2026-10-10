@@ -24,8 +24,8 @@ class RequiredIf<T> extends ValidationRule<T> {
   /// - [message]: A custom validation message (optional) to be displayed
   ///   when the validation fails.
   RequiredIf(this.otherFieldName, {required this.equalTo, String? message})
-      : condition = null,
-        super(message);
+    : condition = null,
+      super(message);
 
   /// Creates a new instance of the [RequiredIf] validation rule based on a condition.
   ///
@@ -33,9 +33,9 @@ class RequiredIf<T> extends ValidationRule<T> {
   /// - [message]: A custom validation message (optional) to be displayed
   ///   when the validation fails.
   RequiredIf.condition(this.condition, {String? message})
-      : otherFieldName = null,
-        equalTo = null,
-        super(message);
+    : otherFieldName = null,
+      equalTo = null,
+      super(message);
 
   @override
   String validatorMessage(String fieldName) =>
@@ -52,7 +52,7 @@ class RequiredIf<T> extends ValidationRule<T> {
 
   @override
   bool validate(T value, Map<String, FormFieldState> fields) {
-    bool _isBlank(dynamic value) {
+    bool isBlank(dynamic value) {
       if (value == null) return true;
       if (value is String) return value.trim().isEmpty;
       if (value is Iterable) return value.isEmpty;
@@ -65,6 +65,6 @@ class RequiredIf<T> extends ValidationRule<T> {
       return true;
     }
     // Required => must be non-empty
-    return !_isBlank(value);
+    return !isBlank(value);
   }
 }

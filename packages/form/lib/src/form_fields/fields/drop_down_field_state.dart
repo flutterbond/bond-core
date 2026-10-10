@@ -18,15 +18,10 @@ class DropDownFieldState<T> extends FormFieldState<T> {
   DropDownFieldState(
     T value, {
     required this.items,
-    required String label,
-    String? error,
-    List<ValidationRule<T>> rules = const [],
-  }) : super(
-          value: value,
-          label: label,
-          error: error,
-          rules: rules,
-        );
+    required super.label,
+    super.error,
+    super.rules,
+  }) : super(value: value);
 
   @override
   DropDownFieldState<T> copyWith({
@@ -58,9 +53,7 @@ class DropDownFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  DropDownFieldState<T> copyWithNullable({
-    T? value,
-  }) {
+  DropDownFieldState<T> copyWithNullable({T? value}) {
     return DropDownFieldState<T>(
       value as T,
       items: items,

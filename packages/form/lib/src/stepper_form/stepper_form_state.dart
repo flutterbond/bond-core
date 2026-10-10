@@ -78,9 +78,10 @@ class StepperFormState<Success, Failure extends Error>
   ///
   /// - [stepStates] A list of [BondFormState] representing the state of each step.
   /// - Returns: A combined map of all field states.
-  static Map<String, FormFieldState>
-      _combineFields<Success, Failure extends Error>(
-          List<BondFormState<Success, Failure>> stepStates) {
+  static Map<String, FormFieldState> _combineFields<
+    Success,
+    Failure extends Error
+  >(List<BondFormState<Success, Failure>> stepStates) {
     final combinedFields = <String, FormFieldState>{};
     for (final stepState in stepStates) {
       combinedFields.addAll(stepState.fields);
@@ -96,18 +97,21 @@ class StepperFormState<Success, Failure extends Error>
   ///
   /// - [stepStates] A list of [BondFormState] representing the state of each step.
   /// - Returns: The combined [BondFormStateStatus] for the entire form.
-  static BondFormStateStatus
-      _deriveCombinedStatus<Success, Failure extends Error>(
-          List<BondFormState<Success, Failure>> stepStates) {
+  static BondFormStateStatus _deriveCombinedStatus<
+    Success,
+    Failure extends Error
+  >(List<BondFormState<Success, Failure>> stepStates) {
     // If any step is submitting, the combined state is submitting.
-    if (stepStates
-        .any((state) => state.status == BondFormStateStatus.submitting)) {
+    if (stepStates.any(
+      (state) => state.status == BondFormStateStatus.submitting,
+    )) {
       return BondFormStateStatus.submitting;
     }
 
     // If all steps are valid, the combined state is valid.
-    if (stepStates
-        .every((state) => state.status == BondFormStateStatus.valid)) {
+    if (stepStates.every(
+      (state) => state.status == BondFormStateStatus.valid,
+    )) {
       return BondFormStateStatus.valid;
     }
 
@@ -117,14 +121,16 @@ class StepperFormState<Success, Failure extends Error>
     }
 
     // If any step has validation errors, the combined state is invalid.
-    if (stepStates
-        .any((state) => state.status == BondFormStateStatus.invalid)) {
+    if (stepStates.any(
+      (state) => state.status == BondFormStateStatus.invalid,
+    )) {
       return BondFormStateStatus.invalid;
     }
 
     // If all steps are pristine (untouched), the combined state is pristine.
-    if (stepStates
-        .every((state) => state.status == BondFormStateStatus.pristine)) {
+    if (stepStates.every(
+      (state) => state.status == BondFormStateStatus.pristine,
+    )) {
       return BondFormStateStatus.pristine;
     }
 
@@ -143,6 +149,7 @@ class StepperFormState<Success, Failure extends Error>
   /// - [failure] The failure result of the form submission to override.
   /// - [currentStep] The step number to override.
   /// - Returns: A new instance of [StepperFormState] with the provided overrides.
+  @override
   State copyWith<State extends BaseBondFormState<Success, Failure>>({
     Map<String, FormFieldState>? fields,
     BondFormStateStatus? status,

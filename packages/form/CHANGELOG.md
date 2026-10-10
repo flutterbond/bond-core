@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0
+
+### Breaking
+- Requires Dart 3.13 and Flutter 3.47 or newer.
+- Depends on `bond_core: ^0.1.0` (material_ui based).
+- `Rules.dateAfter(date)` now returns a `DateAfter` rule. It used to return `DateBefore` by mistake,
+  so forms that relied on the old (inverted) result must be checked.
+
+### Changed
+- `mime` range widened to `>=1.0.5 <3.0.0` (mime 2 is supported).
+- Dev dependency `intl_translation` `^0.20.0` -> `^0.22.0` (0.20 does not resolve on Dart 3.13).
+- Library names removed (`library;`), lint fixes for `flutter_lints` 6, code formatted with the Dart 3.13 formatter.
+
+### Fixed
+- `Rules.dateAfter` returned a `DateBefore` rule (see Breaking).
+
 ## 0.0.22+19
 * Added insertAsyncDropDownItem method to support dynamic item injection into async dropdowns
 * Added updateAsyncDropDownItem method to update existing dropdown item labels

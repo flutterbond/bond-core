@@ -1,4 +1,4 @@
-library stepper_form;
+library;
 
 export 'stepper_form/stepper_form_state.dart';
 export 'stepper_form/stepper_form_controller.dart';

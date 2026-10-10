@@ -1,3 +1,3 @@
-library bond_form_bloc;
+library;
 
 export 'src/form.dart';

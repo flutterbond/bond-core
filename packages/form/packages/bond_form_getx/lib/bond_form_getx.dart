@@ -1,3 +1,3 @@
-library getx_form_riverpod;
+library;
 
 export 'src/form.dart';

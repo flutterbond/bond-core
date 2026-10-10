@@ -36,31 +36,25 @@ class TextFieldState extends FormFieldState<String?> with Disposable {
   /// - [controller]: Optionally provide your own [TextEditingController]. If not provided, one will be created.
   TextFieldState(
     String? value, {
-    required String label,
-    String? error,
-    List<ValidationRule<String?>> rules = const [],
-    bool validateOnUpdate = true,
-    bool touched = false,
+    required super.label,
+    super.error,
+    super.rules = const [],
+    super.validateOnUpdate = true,
+    super.touched,
     widgets.TextEditingController? controller,
     widgets.FocusNode? focusNode,
-  })  : _controller = controller ??
-            widgets.TextEditingController.fromValue(
-              widgets.TextEditingValue(
-                text: value ?? '',
-                selection: value != null
-                    ? widgets.TextSelection.collapsed(offset: value.length)
-                    : const widgets.TextSelection.collapsed(offset: 0),
-              ),
-            ),
-        _focusNode = focusNode ?? widgets.FocusNode(),
-        super(
-          value: value,
-          error: error,
-          label: label,
-          rules: rules,
-          validateOnUpdate: validateOnUpdate,
-          touched: touched,
-        );
+  }) : _controller =
+           controller ??
+           widgets.TextEditingController.fromValue(
+             widgets.TextEditingValue(
+               text: value ?? '',
+               selection: value != null
+                   ? widgets.TextSelection.collapsed(offset: value.length)
+                   : const widgets.TextSelection.collapsed(offset: 0),
+             ),
+           ),
+       _focusNode = focusNode ?? widgets.FocusNode(),
+       super(value: value);
 
   @override
   TextFieldState copyWith({
@@ -101,9 +95,7 @@ class TextFieldState extends FormFieldState<String?> with Disposable {
   }
 
   @override
-  TextFieldState copyWithNullable({
-    String? value,
-  }) {
+  TextFieldState copyWithNullable({String? value}) {
     _syncController(value);
     return TextFieldState(
       value,

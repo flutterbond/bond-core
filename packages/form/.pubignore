@@ -1,0 +1,4 @@
+# pub also reads this file when publishing the adapters nested in packages/,
+# so it must not exclude packages/ itself (that would hide their pubspec).
+# The adapters therefore stay inside the bond_form archive, as in 0.0.22.
+Podfile.lock

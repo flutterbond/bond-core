@@ -1,61 +1,64 @@
 import 'package:bond_cache/bond_cache.dart';
 import 'package:bond_core/bond_core.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'common/mock_service_provider.dart';
 import 'common/not_registered_model.dart';
 import 'common/registered_model.dart';
 
 void main() {
-  final _mockedServiceProvider = MockServiceProvider();
+  final mockedServiceProvider = MockServiceProvider();
 
   setUp(() {
     Cache.cacheDriver = BondCache(driver: InMemoryCacheDriver());
-    appProviders.add(_mockedServiceProvider);
+    appProviders.add(mockedServiceProvider);
   });
 
   tearDown(() => appProviders.clear());
 
   group('add', () {
-    test('add method stores value if key does not exist and returns true',
-        () async {
-      final key = 'unique_key';
-      final value = 'new_value';
+    test(
+      'add method stores value if key does not exist and returns true',
+      () async {
+        final key = 'unique_key';
+        final value = 'new_value';
 
-      // Ensure the key does not exist initially
-      expect(await Cache.has(key), isFalse);
+        // Ensure the key does not exist initially
+        expect(Cache.has(key), isFalse);
 
-      // Attempt to add the new value
-      final result = await Cache.add<String>(key, value);
-      expect(result, isTrue); // Check if the value was successfully added
+        // Attempt to add the new value
+        final result = await Cache.add<String>(key, value);
+        expect(result, isTrue); // Check if the value was successfully added
 
-      // Verify that the value is now stored under the key
-      final storedValue = await Cache.get<String>(key);
-      expect(storedValue, equals(value));
-    });
+        // Verify that the value is now stored under the key
+        final storedValue = Cache.get<String>(key);
+        expect(storedValue, equals(value));
+      },
+    );
 
     test(
-        'add method does not store value if key already exists and returns false',
-        () async {
-      final key = 'existing_key';
-      final initialValue = 'initial_value';
-      final newValue = 'new_value';
+      'add method does not store value if key already exists and returns false',
+      () async {
+        final key = 'existing_key';
+        final initialValue = 'initial_value';
+        final newValue = 'new_value';
 
-      // Pre-populate the cache with the initial value
-      await Cache.put<String>(key, initialValue);
-      expect(await Cache.has(key), isTrue);
+        // Pre-populate the cache with the initial value
+        await Cache.put<String>(key, initialValue);
+        expect(Cache.has(key), isTrue);
 
-      // Attempt to add a new value under the same key
-      final result = await Cache.add<String>(key, newValue);
-      expect(result, isFalse); // Check if the method correctly returns false
+        // Attempt to add a new value under the same key
+        final result = await Cache.add<String>(key, newValue);
+        expect(result, isFalse); // Check if the method correctly returns false
 
-      // Verify that the value has not been overwritten
-      final storedValue = await Cache.get<String>(key);
-      expect(
-        storedValue,
-        equals(initialValue),
-      ); // Should still be the initial value
-    });
+        // Verify that the value has not been overwritten
+        final storedValue = Cache.get<String>(key);
+        expect(
+          storedValue,
+          equals(initialValue),
+        ); // Should still be the initial value
+      },
+    );
 
     test('add method handles optional expiration duration', () async {
       final key = 'expiring_key';
@@ -71,14 +74,14 @@ void main() {
       expect(result, isTrue);
 
       // Initially check the value is there
-      var storedValue = await Cache.get<String?>(key);
+      var storedValue = Cache.get<String?>(key);
       expect(storedValue, equals(value));
 
       // Wait for more than the expiration duration
       await Future.delayed(Duration(milliseconds: 200));
 
       // Check that the value has expired
-      storedValue = await Cache.get<String?>(key);
+      storedValue = Cache.get<String?>(key);
       expect(storedValue, isNull);
     });
   });
@@ -96,7 +99,7 @@ void main() {
       ); // Ensure the method returns true indicating success
 
       // Retrieve the stored value to confirm it's correctly stored
-      final storedValue = await Cache.get<String>(key);
+      final storedValue = Cache.get<String>(key);
       expect(
         storedValue,
         equals(value),
@@ -109,7 +112,7 @@ void main() {
       ); // Example delay; adjust as necessary
 
       // Re-check the value to confirm it's still present after some time
-      final recheckedValue = await Cache.get<String>(key);
+      final recheckedValue = Cache.get<String>(key);
       expect(recheckedValue, equals(value)); // Value should still be there
     });
 
@@ -126,7 +129,7 @@ void main() {
       expect(result, isTrue); // Ensure the method returns true
 
       // Check that the new value replaced the old value
-      final currentValue = await Cache.get<String>(key);
+      final currentValue = Cache.get<String>(key);
       expect(currentValue, equals(newValue)); // Should be the new value
     });
   });
@@ -140,7 +143,7 @@ void main() {
       await Cache.forever<String>(key, value);
 
       // Check if the value is initially present
-      var exists = await Cache.has(key);
+      var exists = Cache.has(key);
       expect(exists, isTrue);
 
       // Attempt to remove the key
@@ -148,7 +151,7 @@ void main() {
       expect(result, isTrue); // Check if the removal was reported as successful
 
       // Verify the key is no longer in the cache
-      exists = await Cache.has(key);
+      exists = Cache.has(key);
       expect(exists, isFalse);
     });
 
@@ -156,7 +159,7 @@ void main() {
       final key = 'nonexistent_key';
 
       // Ensure the key does not exist
-      var exists = await Cache.has(key);
+      var exists = Cache.has(key);
       expect(exists, isFalse);
 
       // Attempt to remove a non-existing key
@@ -173,7 +176,7 @@ void main() {
       final key = 'increment_key';
 
       // Ensure the key does not exist
-      var exists = await Cache.has(key);
+      var exists = Cache.has(key);
       expect(exists, isFalse);
 
       // Increment the non-existing key
@@ -181,7 +184,7 @@ void main() {
       expect(result, isTrue);
 
       // Check if the value is set to the increment amount
-      final newValue = await Cache.get<int>(key);
+      final newValue = Cache.get<int>(key);
       expect(newValue, equals(5));
     });
 
@@ -194,7 +197,7 @@ void main() {
       expect(result, isTrue);
 
       // Verify the value is incremented correctly
-      final newValue = await Cache.get<int>(key);
+      final newValue = Cache.get<int>(key);
       expect(newValue, equals(13));
     });
 
@@ -202,7 +205,7 @@ void main() {
       final key = 'decrement_key';
 
       // Ensure the key does not exist
-      var exists = await Cache.has(key);
+      var exists = Cache.has(key);
       expect(exists, isFalse);
 
       // Decrement the non-existing key
@@ -210,7 +213,7 @@ void main() {
       expect(result, isTrue);
 
       // Check if the value is set to negative of the decrement amount
-      final newValue = await Cache.get<int>(key);
+      final newValue = Cache.get<int>(key);
       expect(newValue, equals(-2));
     });
 
@@ -223,7 +226,7 @@ void main() {
       expect(result, isTrue);
 
       // Verify the value is decremented correctly
-      final newValue = await Cache.get<int>(key);
+      final newValue = Cache.get<int>(key);
       expect(newValue, equals(7));
     });
   });
@@ -239,10 +242,12 @@ void main() {
       // Pull the value
       final pulledValue = await Cache.pull<String>(key);
       expect(
-          pulledValue, equals(value)); // Verify the retrieved value is correct
+        pulledValue,
+        equals(value),
+      ); // Verify the retrieved value is correct
 
       // Verify the key has been removed from the cache
-      final exists = await Cache.has(key);
+      final exists = Cache.has(key);
       expect(exists, isFalse);
     });
 
@@ -251,58 +256,57 @@ void main() {
 
       // Pull using a non-existing key
       final pulledValue = await Cache.pull<String?>(key);
-      expect(
-        pulledValue,
-        isNull,
-      ); // Should return null as the default value is not provided and key does not exist
-    });
-
-    test('pull method uses fromJsonFactory to deserialize and remove object',
-        () async {
-      final key = 'pull_object_key';
-      final value = NotRegisteredModel.data('pull_object_value');
-
-      // Store the object in the cache
-      await Cache.put<NotRegisteredModel>(key, value);
-
-      // Pull the object using the fromJsonFactory
-      final pulledValue = await Cache.pull<NotRegisteredModel>(
-        key,
-        fromJsonFactory: NotRegisteredModel.fromJson,
-      );
-      expect(
-        pulledValue,
-        equals(value),
-      ); // Should return the object stored in the cache
-
-      // Verify the key has been removed from the cache
-      final exists = await Cache.has(key);
-      expect(exists, isFalse);
-    });
-
-    test('pull method uses providers to deserialize and remove object',
-        () async {
-      final key = 'pull_object_key';
-      final value = RegisteredModel.data('pull_object_value');
-
-      // Store the object in the cache
-      await Cache.put<RegisteredModel>(key, value);
-
-      // Pull the object using the provider
-      final pulledValue = await Cache.pull<RegisteredModel>(key);
-      expect(
-        pulledValue,
-        equals(value),
-      ); // Should return the object stored in the cache
-
-      // Verify the key has been removed from the cache
-      final exists = Cache.has(key);
-      expect(exists, isFalse);
+      expect(pulledValue, isNull); // Should return null as the default value is not provided and key does not exist
     });
 
     test(
-        'pull method returns default value if key does not exist and default is provided',
-        () async {
+      'pull method uses fromJsonFactory to deserialize and remove object',
+      () async {
+        final key = 'pull_object_key';
+        final value = NotRegisteredModel.data('pull_object_value');
+
+        // Store the object in the cache
+        await Cache.put<NotRegisteredModel>(key, value);
+
+        // Pull the object using the fromJsonFactory
+        final pulledValue = await Cache.pull<NotRegisteredModel>(
+          key,
+          fromJsonFactory: NotRegisteredModel.fromJson,
+        );
+        expect(
+          pulledValue,
+          equals(value),
+        ); // Should return the object stored in the cache
+
+        // Verify the key has been removed from the cache
+        final exists = Cache.has(key);
+        expect(exists, isFalse);
+      },
+    );
+
+    test(
+      'pull method uses providers to deserialize and remove object',
+      () async {
+        final key = 'pull_object_key';
+        final value = RegisteredModel.data('pull_object_value');
+
+        // Store the object in the cache
+        await Cache.put<RegisteredModel>(key, value);
+
+        // Pull the object using the provider
+        final pulledValue = await Cache.pull<RegisteredModel>(key);
+        expect(
+          pulledValue,
+          equals(value),
+        ); // Should return the object stored in the cache
+
+        // Verify the key has been removed from the cache
+        final exists = Cache.has(key);
+        expect(exists, isFalse);
+      },
+    );
+
+    test('pull method returns default value if key does not exist and default is provided', () async {
       final key = 'nonexistent_key';
       final defaultValue = 'default_value';
 

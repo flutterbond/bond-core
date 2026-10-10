@@ -22,39 +22,21 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-/pubspec.lock
+# Pub workspace: one root pubspec.lock is generated; libraries don't commit lockfiles,
+# per https://dart.dev/guides/libraries/private-files#pubspeclock.
+pubspec.lock
+pubspec_overrides.yaml
 **/doc/api/
 .dart_tool/
 .packages
 build/
-/.flutter-plugins
-/.flutter-plugins-dependencies
-lib/src/network/.flutter-plugins-dependencies
-lib/src/network/.flutter-plugins
-lib/src/chat_bot/.flutter-plugins-dependencies
-lib/src/chat_bot/.flutter-plugins
-lib/src/notifications/.flutter-plugins-dependencies
-lib/src/notifications/.flutter-plugins
-lib/src/form/.flutter-plugins
-lib/src/form/.flutter-plugins-dependencies
-lib/src/notifications/.flutter-plugins
-lib/src/notifications/.flutter-plugins-dependencies
-packages/notifications/pubspec_overrides.yaml
-packages/network/pubspec_overrides.yaml
-packages/form/pubspec_overrides.yaml
-packages/chat_bot/pubspec_overrides.yaml
-packages/cache/pubspec_overrides.yaml
-packages/chat_bot/.flutter-plugins
-packages/chat_bot/.flutter-plugins-dependencies
-packages/form/.flutter-plugins-dependencies
-packages/form/.flutter-plugins
-packages/network/.flutter-plugins
-packages/network/.flutter-plugins-dependencies
-packages/notifications/.flutter-plugins-dependencies
-packages/notifications/.flutter-plugins
-.obsidian/app.json
-.obsidian/appearance.json
-.obsidian/core-plugins-migration.json
-.obsidian/core-plugins.json
-.obsidian/workspace.json
+.flutter-plugins
+.flutter-plugins-dependencies
+coverage/
+
+# Obsidian vault metadata
+.obsidian/
+
+# FVM (version pinned in .fvmrc) and local git worktrees
+.fvm/
+.worktrees/

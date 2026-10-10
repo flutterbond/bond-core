@@ -7,8 +7,11 @@ import 'package:bond_form/bond_form.dart';
 /// - Transformation of form fields using registered transformers.
 /// - Options to ignore certain keys, empty values, or remap keys.
 /// - Support for merging nested maps and post-processing the body.
-mixin BodyConvertible<Success, Failure extends Error,
-        State extends BaseBondFormState<Success, Failure>>
+mixin BodyConvertible<
+  Success,
+  Failure extends Error,
+  State extends BaseBondFormState<Success, Failure>
+>
     on BaseFormController<Success, Failure, State> {
   /// Generates a map from the form state, applying any transformations
   /// specified by the [fieldTransformers] method.

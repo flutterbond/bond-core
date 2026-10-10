@@ -1,4 +1,4 @@
-library bond_cache;
+library;
 
 export 'src/cache.dart';
 export 'src/cache/bond_cache.dart' hide CacheData;

@@ -1,4 +1,4 @@
-library form_fields;
+library;
 
 export 'form_fields/fields/async_drop_down_field_state.dart';
 export 'form_fields/fields/async_hidden_field_state.dart';

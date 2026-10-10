@@ -15,17 +15,15 @@ class CacheData {
 
   /// Constructs a [CacheData] instance from a JSON representation.
   factory CacheData.fromJson(Map<String, dynamic> json) => CacheData(
-        data: json['data'],
-        expiredAt: json['expiredAt'] == null
-            ? null
-            : DateTime.fromMillisecondsSinceEpoch(
-                json['expiredAt'],
-              ),
-      );
+    data: json['data'],
+    expiredAt: json['expiredAt'] == null
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(json['expiredAt']),
+  );
 
   /// Converts the [CacheData] instance to a JSON representation.
   Map<String, dynamic> toJson() => {
-        'data': data,
-        'expiredAt': expiredAt?.millisecondsSinceEpoch,
-      };
+    'data': data,
+    'expiredAt': expiredAt?.millisecondsSinceEpoch,
+  };
 }

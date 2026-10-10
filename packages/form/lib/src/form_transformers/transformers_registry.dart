@@ -69,8 +69,9 @@ class TransformersRegistry {
   ///
   /// Returns: A JSON-encoded string of the transformed collection.
   dynamic _transformCollection<C extends Iterable>(C collection) {
-    final firstElementType =
-        collection.isNotEmpty ? collection.first.runtimeType : null;
+    final firstElementType = collection.isNotEmpty
+        ? collection.first.runtimeType
+        : null;
     if (firstElementType != null) {
       final transformer = factoriesByType[firstElementType];
       if (transformer != null) {

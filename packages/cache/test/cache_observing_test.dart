@@ -1,6 +1,6 @@
 import 'package:bond_cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import 'cache/helpers/mock_observer.dart';
 
@@ -65,8 +65,8 @@ void main() {
 
       // Setup watch
       final observer = MockObserver<int>();
-      when(observer.onUpdate(key, any)).thenAnswer((_) {
-        latestValue = _.positionalArguments[1] as int;
+      when(observer.onUpdate(key, any)).thenAnswer((invocation) {
+        latestValue = invocation.positionalArguments[1] as int;
       });
       Cache.watch<int>(key, observer);
 
@@ -96,8 +96,7 @@ void main() {
       verifyNever(observer.onUpdate(key, value));
     });
 
-    test(
-        'watch throws ArgumentError and Prevents onUpdate'
+    test('watch throws ArgumentError and Prevents onUpdate'
         ' Call When Updating With Mismatched Type', () async {
       final key = 'watch_key';
       final value = 1;
@@ -115,8 +114,9 @@ void main() {
       );
 
       // Ensure that the observer's onUpdate method was never called since the operation should fail
-      verifyNever(observer.onUpdate(key,
-          any)); // Using `any` to ensure no onUpdate calls occurred regardless of value
+      verifyNever(
+        observer.onUpdate(key, any),
+      ); // Using `any` to ensure no onUpdate calls occurred regardless of value
     });
 
     test('unwatch removes observer', () async {

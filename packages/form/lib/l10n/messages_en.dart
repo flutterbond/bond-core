@@ -15,22 +15,26 @@ import 'package:intl/message_lookup_by_library.dart';
 
 final messages = MessageLookup();
 
-typedef String? MessageIfAbsent(
-    String? messageStr, List<Object>? args);
+typedef String? MessageIfAbsent(String? messageStr, List<Object>? args);
 
 class MessageLookup extends MessageLookupByLibrary {
   @override
   String get localeName => 'en';
 
-  static m0(fieldName) => "${fieldName} may only contain alpha-numeric characters, dashes, and underscores.";
+  static m0(fieldName) =>
+      "${fieldName} may only contain alpha-numeric characters, dashes, and underscores.";
 
-  static m1(fieldName) => "${fieldName} must contain only alpha-numeric characters.";
+  static m1(fieldName) =>
+      "${fieldName} must contain only alpha-numeric characters.";
 
-  static m2(fieldName) => "${fieldName} must contain only alphabetic characters.";
+  static m2(fieldName) =>
+      "${fieldName} must contain only alphabetic characters.";
 
-  static m3(fieldName, min, max) => "${fieldName} must have a size between ${min} and ${max}.";
+  static m3(fieldName, min, max) =>
+      "${fieldName} must have a size between ${min} and ${max}.";
 
-  static m4(fieldName) => "${fieldName} must be a boolean (true, false, 1, 0, \'1\', \'0\').";
+  static m4(fieldName) =>
+      "${fieldName} must be a boolean (true, false, 1, 0, \'1\', \'0\').";
 
   static m5(fieldName) => "${fieldName} confirmation does not match.";
 
@@ -38,23 +42,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m7(fieldName, before) => "${fieldName} must be before ${before}.";
 
-  static m8(fieldName, format) => "${fieldName} must match the format ${format}.";
+  static m8(fieldName, format) =>
+      "${fieldName} must match the format ${format}.";
 
   static m9(fieldName) => "${fieldName} must be a valid date.";
 
-  static m10(fieldName, field) => "${fieldName} must have a different value than ${field}.";
+  static m10(fieldName, field) =>
+      "${fieldName} must have a different value than ${field}.";
 
-  static m11(fieldName, min, max) => "${fieldName} must have a length between ${min} and ${max}.";
+  static m11(fieldName, min, max) =>
+      "${fieldName} must have a length between ${min} and ${max}.";
 
-  static m12(fieldName, value) => "${fieldName} must be numeric and have an exact length of ${value}.";
+  static m12(fieldName, value) =>
+      "${fieldName} must be numeric and have an exact length of ${value}.";
 
   static m13(fieldName) => "${fieldName} must be a valid email address.";
 
-  static m14(fieldName, size) => "${fieldName} must be less than ${size} bytes.";
+  static m14(fieldName, size) =>
+      "${fieldName} must be less than ${size} bytes.";
 
   static m34(fieldName, type) => "${fieldName} must be of type ${type}.";
 
-  static m15(fieldName) => "${fieldName} must be included in the given list of values.";
+  static m15(fieldName) =>
+      "${fieldName} must be included in the given list of values.";
 
   static m16(fieldName) => "${fieldName} must be an integer.";
 
@@ -62,41 +72,50 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(fieldName) => "The field ${fieldName} must be checked.";
 
-  static m19(fieldName, length) => "${fieldName} must not exceed ${length} characters.";
+  static m19(fieldName, length) =>
+      "${fieldName} must not exceed ${length} characters.";
 
   static m20(fieldName, max) => "You may only select ${max} ${fieldName}.";
 
-  static m21(fieldName, value) => "${fieldName} must have a maximum value of ${value}.";
+  static m21(fieldName, value) =>
+      "${fieldName} must have a maximum value of ${value}.";
 
-  static m22(fieldName, length) => "${fieldName} must be at least ${length} characters long.";
+  static m22(fieldName, length) =>
+      "${fieldName} must be at least ${length} characters long.";
 
   static m23(fieldName, min) => "You must select at least ${min} ${fieldName}.";
 
-  static m24(fieldName, value) => "${fieldName} must have a minimum value of ${value}.";
+  static m24(fieldName, value) =>
+      "${fieldName} must have a minimum value of ${value}.";
 
-  static m25(fieldName) => "${fieldName} must not be included in the given list of values.";
+  static m25(fieldName) =>
+      "${fieldName} must not be included in the given list of values.";
 
   static m26(fieldName) => "${fieldName} must be numeric.";
 
   static m27(fieldName) => "${fieldName} must be a valid phone number.";
 
-  static m28(fieldName, min, max) => "You must select between ${min} and ${max} ${fieldName}.";
+  static m28(fieldName, min, max) =>
+      "You must select between ${min} and ${max} ${fieldName}.";
 
   static m29(fieldName) => "${fieldName} must match the given pattern.";
 
   static m30(fieldName) => "${fieldName} is required.";
 
-  static m31(fieldName, field) => "${fieldName} must have the same value as ${field}.";
+  static m31(fieldName, field) =>
+      "${fieldName} must have the same value as ${field}.";
 
   static m32(fieldName, value) => "${fieldName} must have a size of ${value}.";
 
   static m33(fieldName) => "${fieldName} must be a valid URL.";
 
   @override
-  final Map<String, dynamic> messages = _notInlinedMessages(_notInlinedMessages);
+  final Map<String, dynamic> messages = _notInlinedMessages(
+    _notInlinedMessages,
+  );
 
   static Map<String, dynamic> _notInlinedMessages(_) => {
-      'alphaDashValidationMessage': m0,
+    'alphaDashValidationMessage': m0,
     'alphaNumValidationMessage': m1,
     'alphaValidationMessage': m2,
     'betweenValidationMessage': m3,
@@ -130,6 +149,6 @@ class MessageLookup extends MessageLookupByLibrary {
     'requiredValidationMessage': m30,
     'sameValidationMessage': m31,
     'sizeValidationMessage': m32,
-    'urlValidationMessage': m33
+    'urlValidationMessage': m33,
   };
 }

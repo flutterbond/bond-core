@@ -82,7 +82,8 @@ extension FieldBondFormState on BaseBondFormState {
   /// - Returns: A list of [RadioButtonFieldState] instances.
   /// - Throws: [ArgumentError] if the field doesn't exist.
   Future<List<RadioButtonFieldState<T>>> asyncRadioButtonsOf<T>(
-      String fieldName) {
+    String fieldName,
+  ) {
     return asyncRadioGroup<T>(fieldName).resolvedItems;
   }
 

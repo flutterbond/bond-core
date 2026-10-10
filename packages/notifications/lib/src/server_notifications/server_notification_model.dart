@@ -86,23 +86,20 @@ class ServerNotificationModel extends Model {
 
   @override
   List<Object?> get props => [
-        uuid,
-        notifiableType,
-        notifiableId,
-        authableType,
-        authableId,
-        code,
-        body,
-        data,
-        senderName,
-        senderImage,
-        readAt,
-        createdAt,
-        title
-      ];
+    uuid,
+    notifiableType,
+    notifiableId,
+    authableType,
+    authableId,
+    code,
+    body,
+    data,
+    senderName,
+    senderImage,
+    readAt,
+    createdAt,
+    title,
+  ];
 }
 
-enum SeverNotificationChangedType {
-  loadingNextPage,
-  loaded,
-}
+enum SeverNotificationChangedType { loadingNextPage, loaded }

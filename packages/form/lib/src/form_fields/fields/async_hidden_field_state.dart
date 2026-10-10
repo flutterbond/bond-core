@@ -15,16 +15,8 @@ class AsyncHiddenFieldState<T> extends FormFieldState<T> {
   ///
   /// - [value] The value associated with the hidden field (optional).
   /// - [pendingValue] The future value that will be loaded asynchronously.
-  AsyncHiddenFieldState(
-    T value, {
-    required this.pendingValue,
-    String? error,
-  }) : super(
-          value: value,
-          label: '',
-          error: error,
-          rules: const [],
-        );
+  AsyncHiddenFieldState(T value, {required this.pendingValue, super.error})
+    : super(value: value, label: '', rules: const []);
 
   @override
   AsyncHiddenFieldState<T> copyWith({
@@ -38,15 +30,13 @@ class AsyncHiddenFieldState<T> extends FormFieldState<T> {
   }) {
     return AsyncHiddenFieldState<T>(
       value ?? this.value,
-      pendingValue: futureValue ?? this.pendingValue,
+      pendingValue: futureValue ?? pendingValue,
       error: error ?? this.error,
     );
   }
 
   @override
-  AsyncHiddenFieldState<T> copyWithNullable({
-    T? value,
-  }) {
+  AsyncHiddenFieldState<T> copyWithNullable({T? value}) {
     return AsyncHiddenFieldState<T>(
       value as T,
       pendingValue: pendingValue,

@@ -11,12 +11,7 @@ class Links extends Equatable with Jsonable {
   final String? next;
   final String? prev;
 
-  const Links({
-    this.first,
-    this.last,
-    this.next,
-    this.prev,
-  });
+  const Links({this.first, this.last, this.next, this.prev});
 
   factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
