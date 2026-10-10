@@ -1,8 +1,0 @@
-# melos_managed_dependency_overrides: bond_core,bond_form,bond_form_riverpod
-dependency_overrides:
-  bond_core:
-    path: ../../../../core
-  bond_form:
-    path: ../../..
-  bond_form_riverpod:
-    path: ..
