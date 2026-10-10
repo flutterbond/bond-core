@@ -58,3 +58,7 @@ packages/notifications/.flutter-plugins
 .obsidian/core-plugins-migration.json
 .obsidian/core-plugins.json
 .obsidian/workspace.json
+
+# FVM (version pinned in .fvmrc) and local git worktrees
+.fvm/
+.worktrees/
