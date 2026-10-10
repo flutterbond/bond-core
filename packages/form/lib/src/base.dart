@@ -1,4 +1,4 @@
-library base;
+library;
 
 export 'base/base_form_controller.dart';
 export 'base/base_form_state.dart';

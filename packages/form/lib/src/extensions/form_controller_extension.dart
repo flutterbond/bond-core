@@ -138,9 +138,9 @@ extension XFormController on BaseFormController {
     String fieldName,
     List<RadioButtonFieldState<T>> items,
   ) {
-    state.fields[fieldName] = state.radioGroup<T>(fieldName).copyWith(
-          radioButtons: items,
-        );
+    state.fields[fieldName] = state
+        .radioGroup<T>(fieldName)
+        .copyWith(radioButtons: items);
   }
 
   /// Updates a [HiddenFieldState] with a given [value].

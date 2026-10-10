@@ -15,42 +15,52 @@ import 'package:intl/message_lookup_by_library.dart';
 
 final messages = MessageLookup();
 
-typedef String? MessageIfAbsent(
-    String? messageStr, List<Object>? args);
+typedef String? MessageIfAbsent(String? messageStr, List<Object>? args);
 
 class MessageLookup extends MessageLookupByLibrary {
   @override
   String get localeName => 'ar';
 
-  static m0(fieldName) => "${fieldName} قد يحتوي فقط على أحرف أبجدية رقمية، شرطات، وشرطات سفلية.";
+  static m0(fieldName) =>
+      "${fieldName} قد يحتوي فقط على أحرف أبجدية رقمية، شرطات، وشرطات سفلية.";
 
-  static m1(fieldName) => "${fieldName} يجب أن يحتوي فقط على أحرف أبجدية رقمية.";
+  static m1(fieldName) =>
+      "${fieldName} يجب أن يحتوي فقط على أحرف أبجدية رقمية.";
 
   static m2(fieldName) => "${fieldName} يجب أن يحتوي فقط على أحرف أبجدية.";
 
-  static m3(fieldName, min, max) => "${fieldName} يجب أن يكون حجمه بين ${min} و${max}.";
+  static m3(fieldName, min, max) =>
+      "${fieldName} يجب أن يكون حجمه بين ${min} و${max}.";
 
-  static m4(fieldName) => "${fieldName} يجب أن يكون منطقيا (true, false, 1, 0, \'1\', \'0\').";
+  static m4(fieldName) =>
+      "${fieldName} يجب أن يكون منطقيا (true, false, 1, 0, \'1\', \'0\').";
 
   static m5(fieldName) => "لا يتطابق تأكيد ${fieldName}.";
 
-  static m6(fieldName, after) => "${fieldName} يجب أن يكون تاريخا بعد ${after}.";
+  static m6(fieldName, after) =>
+      "${fieldName} يجب أن يكون تاريخا بعد ${after}.";
 
-  static m7(fieldName, before) => "${fieldName} يجب أن يكون تاريخا قبل ${before}.";
+  static m7(fieldName, before) =>
+      "${fieldName} يجب أن يكون تاريخا قبل ${before}.";
 
-  static m8(fieldName, format) => "${fieldName} يجب أن يتوافق مع النسق ${format}.";
+  static m8(fieldName, format) =>
+      "${fieldName} يجب أن يتوافق مع النسق ${format}.";
 
   static m9(fieldName) => "${fieldName} يجب أن يكون تاريخا صحيحا.";
 
-  static m10(fieldName, field) => "${fieldName} يجب أن يكون له قيمة مختلفة عن ${field}.";
+  static m10(fieldName, field) =>
+      "${fieldName} يجب أن يكون له قيمة مختلفة عن ${field}.";
 
-  static m11(fieldName, min, max) => "${fieldName} يجب أن يكون طوله بين ${min} و${max}.";
+  static m11(fieldName, min, max) =>
+      "${fieldName} يجب أن يكون طوله بين ${min} و${max}.";
 
-  static m12(fieldName, value) => "${fieldName} يجب أن يكون رقميا وأن يكون طوله بالضبط ${value}.";
+  static m12(fieldName, value) =>
+      "${fieldName} يجب أن يكون رقميا وأن يكون طوله بالضبط ${value}.";
 
   static m13(fieldName) => "${fieldName} يجب أن يكون عنوان بريد إلكتروني صالح.";
 
-  static m14(fieldName, size) => "حجم الملف ${fieldName} يجب أن يكون أقل من ${size}.";
+  static m14(fieldName, size) =>
+      "حجم الملف ${fieldName} يجب أن يكون أقل من ${size}.";
 
   static m15(fieldName) => "${fieldName} يجب أن يكون ضمن القائمة المعطاة.";
 
@@ -60,17 +70,22 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m18(fieldName) => "${fieldName} يجب أن يكون محددا.";
 
-  static m19(fieldName, length) => "لا يجب أن يتجاوز ${fieldName} ${length} حروف.";
+  static m19(fieldName, length) =>
+      "لا يجب أن يتجاوز ${fieldName} ${length} حروف.";
 
-  static m20(fieldName, max) => "لا يمكنك تحديد أكثر من ${max} خيارات لـ ${fieldName}.";
+  static m20(fieldName, max) =>
+      "لا يمكنك تحديد أكثر من ${max} خيارات لـ ${fieldName}.";
 
-  static m21(fieldName, value) => "${fieldName} يجب أن يكون لديه قيمة عليا ${value}.";
+  static m21(fieldName, value) =>
+      "${fieldName} يجب أن يكون لديه قيمة عليا ${value}.";
 
-  static m22(fieldName, length) => "يجب أن يكون ${fieldName} على الأقل ${length} حروف.";
+  static m22(fieldName, length) =>
+      "يجب أن يكون ${fieldName} على الأقل ${length} حروف.";
 
   static m23(fieldName, min) => "يجب عليك تحديد ${min} خيارات لـ ${fieldName}.";
 
-  static m24(fieldName, value) => "${fieldName} يجب أن يكون لديه قيمة دنيا ${value}.";
+  static m24(fieldName, value) =>
+      "${fieldName} يجب أن يكون لديه قيمة دنيا ${value}.";
 
   static m25(fieldName) => "${fieldName} يجب أن لا يكون ضمن القائمة المعطاة.";
 
@@ -78,23 +93,27 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m27(fieldName) => "${fieldName} يجب أن يكون رقم هاتف صالح.";
 
-  static m28(fieldName, min, max) => "يجب عليك تحديد بين ${min} و ${max} خيارات لـ ${fieldName}.";
+  static m28(fieldName, min, max) =>
+      "يجب عليك تحديد بين ${min} و ${max} خيارات لـ ${fieldName}.";
 
   static m29(fieldName) => "${fieldName} يجب أن يطابق النمط المحدد.";
 
   static m30(fieldName) => "${fieldName} مطلوب.";
 
-  static m31(fieldName, field) => "${fieldName} يجب أن يكون له نفس القيمة كـ ${field}.";
+  static m31(fieldName, field) =>
+      "${fieldName} يجب أن يكون له نفس القيمة كـ ${field}.";
 
   static m32(fieldName, value) => "${fieldName} يجب أن يكون حجمه ${value}.";
 
   static m33(fieldName) => "${fieldName} يجب أن يكون عنوان URL صالح.";
 
   @override
-  final Map<String, dynamic> messages = _notInlinedMessages(_notInlinedMessages);
+  final Map<String, dynamic> messages = _notInlinedMessages(
+    _notInlinedMessages,
+  );
 
   static Map<String, dynamic> _notInlinedMessages(_) => {
-      'alphaDashValidationMessage': m0,
+    'alphaDashValidationMessage': m0,
     'alphaNumValidationMessage': m1,
     'alphaValidationMessage': m2,
     'betweenValidationMessage': m3,
@@ -127,6 +146,6 @@ class MessageLookup extends MessageLookupByLibrary {
     'requiredValidationMessage': m30,
     'sameValidationMessage': m31,
     'sizeValidationMessage': m32,
-    'urlValidationMessage': m33
+    'urlValidationMessage': m33,
   };
 }

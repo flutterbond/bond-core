@@ -13,11 +13,8 @@ class FileFieldState extends FormFieldState<File?> {
   /// - [value] The initial value of the file field.
   /// - [label] The label for the file field.
   /// - [rules] A list of validation rules to apply to the file field.
-  FileFieldState(
-    File? value, {
-    required String label,
-    List<ValidationRule<File?>> rules = const [],
-  }) : super(value: value, label: label, rules: rules);
+  FileFieldState(File? value, {required super.label, super.rules = const []})
+    : super(value: value);
 
   @override
   FileFieldState copyWith({
@@ -36,14 +33,8 @@ class FileFieldState extends FormFieldState<File?> {
   }
 
   @override
-  FileFieldState copyWithNullable({
-    File? value,
-  }) {
-    return FileFieldState(
-      value,
-      label: label,
-      rules: rules,
-    );
+  FileFieldState copyWithNullable({File? value}) {
+    return FileFieldState(value, label: label, rules: rules);
   }
 
   @override

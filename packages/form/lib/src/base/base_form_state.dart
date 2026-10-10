@@ -37,8 +37,8 @@ abstract class BaseBondFormState<Success, Failure extends Error> {
     this.status = BondFormStateStatus.pristine,
     Success? success,
     Failure? failure,
-  })  : successResult = success,
-        failureResult = failure;
+  }) : successResult = success,
+       failureResult = failure;
 
   /// Retrieves the success result of the form submission.
   ///
@@ -46,7 +46,8 @@ abstract class BaseBondFormState<Success, Failure extends Error> {
   Success get success {
     if (successResult == null || status != BondFormStateStatus.submitted) {
       throw StateError(
-          'Accessing success while form not successfully submitted');
+        'Accessing success while form not successfully submitted',
+      );
     }
     return successResult!;
   }
@@ -73,13 +74,15 @@ abstract class BaseBondFormState<Success, Failure extends Error> {
     if (field is T) {
       return field;
     } else {
-      throw ArgumentError('Type mismatch for field "$fieldName".\n\n'
-          'Expected: $T\n\n'
-          'Actual: ${field.runtimeType}\n\n'
-          'Debugging Tip:\n\n'
-          'If you have declared the field as ${field.runtimeType}, make sure to specify the generic type.\n\n'
-          'For example, if the actual type is "RadioGroupFieldState<dynamic>", you might need to change it to '
-          '"RadioGroupFieldState<bool>" in the field definition.\n\n');
+      throw ArgumentError(
+        'Type mismatch for field "$fieldName".\n\n'
+        'Expected: $T\n\n'
+        'Actual: ${field.runtimeType}\n\n'
+        'Debugging Tip:\n\n'
+        'If you have declared the field as ${field.runtimeType}, make sure to specify the generic type.\n\n'
+        'For example, if the actual type is "RadioGroupFieldState<dynamic>", you might need to change it to '
+        '"RadioGroupFieldState<bool>" in the field definition.\n\n',
+      );
     }
   }
 

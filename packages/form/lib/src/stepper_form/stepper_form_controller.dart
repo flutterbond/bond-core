@@ -9,8 +9,12 @@ import 'package:bond_form/bond_form.dart';
 ///   - [Success] The data type that represents the result of a successful form submission.
 ///   - [Failure] The error type that extends [Error] representing the failure cases of form submission.
 mixin StepperFormController<Success, Failure extends Error>
-    on BaseFormController<Success, Failure,
-        StepperFormState<Success, Failure>> {
+    on
+        BaseFormController<
+          Success,
+          Failure,
+          StepperFormState<Success, Failure>
+        > {
   List<StepFormController> get steps;
 
   /// Returns the map of field names to their corresponding `FormFieldState`.

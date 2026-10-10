@@ -1,4 +1,4 @@
-library validation_rules;
+library;
 
 import 'dart:io';
 
@@ -56,17 +56,20 @@ class Rules {
   ///
   /// This rule checks if a value is required based on a condition where the value
   /// of another field is equal to [equalTo]. It can include a custom validation message.
-  static ValidationRule<T> requiredIf<T>(String? otherFieldName,
-          {dynamic equalTo, String? message}) =>
-      RequiredIf<T>(otherFieldName, equalTo: equalTo, message: message);
+  static ValidationRule<T> requiredIf<T>(
+    String? otherFieldName, {
+    dynamic equalTo,
+    String? message,
+  }) => RequiredIf<T>(otherFieldName, equalTo: equalTo, message: message);
 
   /// Creates a [RequiredIf] validation rule based on a condition.
   ///
   /// This rule checks if a value is required based on a provided condition function.
   /// It can include a custom validation message.
-  static ValidationRule<T> requiredIfCondition<T>(bool Function()? condition,
-          {String? message}) =>
-      RequiredIf.condition(condition, message: message);
+  static ValidationRule<T> requiredIfCondition<T>(
+    bool Function()? condition, {
+    String? message,
+  }) => RequiredIf.condition(condition, message: message);
 
   /// Creates a [Different] validation rule.
   ///
@@ -100,17 +103,21 @@ class Rules {
   ///
   /// This rule checks if a string's length is between [min] and [max] (inclusive).
   /// It can include a custom validation message.
-  static ValidationRule<String> between(
-          {required num min, required num max, String? message}) =>
-      Between(min, max, message: message);
+  static ValidationRule<String> between({
+    required num min,
+    required num max,
+    String? message,
+  }) => Between(min, max, message: message);
 
   /// Create a [BetweenValue] validation rule.
   ///
   /// This rule checks if a numeric value is between [min] and [max] (inclusive).
   /// /// It can include a custom validation message.
-  static ValidationRule<String> betweenValue(
-          {required num min, required num max, String? message}) =>
-      BetweenValue(min, max, message: message);
+  static ValidationRule<String> betweenValue({
+    required num min,
+    required num max,
+    String? message,
+  }) => BetweenValue(min, max, message: message);
 
   /// Creates a [Boolean] validation rule.
   ///
@@ -130,17 +137,20 @@ class Rules {
   ///
   /// This rule checks if a string contains exactly [digitLength] digits.
   /// It can include a custom validation message.
-  static ValidationRule<String> digits(
-          {required int digitLength, String? message}) =>
-      Digits(digitLength, message: message);
+  static ValidationRule<String> digits({
+    required int digitLength,
+    String? message,
+  }) => Digits(digitLength, message: message);
 
   /// Creates a [DigitsBetween] validation rule.
   ///
   /// This rule checks if a string contains between [min] and [max] digits (inclusive).
   /// It can include a custom validation message.
-  static ValidationRule<String> digitsBetween(
-          {required num min, required num max, String? message}) =>
-      DigitsBetween(min, max, message: message);
+  static ValidationRule<String> digitsBetween({
+    required num min,
+    required num max,
+    String? message,
+  }) => DigitsBetween(min, max, message: message);
 
   /// Creates an [Email] validation rule.
   ///
@@ -201,9 +211,10 @@ class Rules {
   ///
   /// This rule checks if a value is not in the list of [invalidValues].
   /// It can include a custom validation message.
-  static ValidationRule<T> notInList<T>(List<T> invalidValues,
-          {String? message}) =>
-      NotInList(invalidValues, message: message);
+  static ValidationRule<T> notInList<T>(
+    List<T> invalidValues, {
+    String? message,
+  }) => NotInList(invalidValues, message: message);
 
   /// Creates a [Numeric] validation rule.
   ///
@@ -223,9 +234,10 @@ class Rules {
   ///
   /// This rule checks if a value is the same as another field's value.
   /// It can include a custom validation message.
-  static ValidationRule<T> same<T>(
-          {required String otherField, String? message}) =>
-      Same(otherField, message: message);
+  static ValidationRule<T> same<T>({
+    required String otherField,
+    String? message,
+  }) => Same(otherField, message: message);
 
   /// Creates a [Size] validation rule.
   ///
@@ -245,58 +257,67 @@ class Rules {
   /// This rule checks if the number of selected items in an iterable is greater
   /// than or equal to [min].
   /// It can include a custom validation message.
-  static ValidationRule<T> minSelected<T extends Iterable<G>, G>(int min,
-          {String? message}) =>
-      MinSelected<T, G>(min, message: message);
+  static ValidationRule<T> minSelected<T extends Iterable<G>, G>(
+    int min, {
+    String? message,
+  }) => MinSelected<T, G>(min, message: message);
 
   /// Creates a [MaxSelected] validation rule.
   ///
   /// This rule checks if the number of selected items in an iterable is less
   /// than or equal to [max].
   /// It can include a custom validation message.
-  static ValidationRule<T> maxSelected<T extends Iterable<G>, G>(int min,
-          {String? message}) =>
-      MaxSelected<T, G>(min, message: message);
+  static ValidationRule<T> maxSelected<T extends Iterable<G>, G>(
+    int min, {
+    String? message,
+  }) => MaxSelected<T, G>(min, message: message);
 
   /// Creates a [RangeSelected] validation rule.
   ///
   /// This rule checks if the number of selected items in an iterable is within
   /// the range of [min] to [max] (inclusive).
   /// It can include a custom validation message.
-  static ValidationRule<Iterable<T>?> rangeSelected<T>(
-          {required int min, required int max, String? message}) =>
-      RangeSelected<T>(min, max, message: message);
+  static ValidationRule<Iterable<T>?> rangeSelected<T>({
+    required int min,
+    required int max,
+    String? message,
+  }) => RangeSelected<T>(min, max, message: message);
 
   /// Creates a [DateBefore] validation rule.
   ///
   /// This rule checks if a date is before a specified [date].
   /// It can include a custom validation message.
-  static ValidationRule<DateTime> dateBefore(DateTime date,
-          {String? message}) =>
-      DateBefore(date, message: message);
+  static ValidationRule<DateTime> dateBefore(
+    DateTime date, {
+    String? message,
+  }) => DateBefore(date, message: message);
 
   /// Creates a [DateAfter] validation rule.
   ///
   /// This rule checks if a date is after a specified [date].
   /// It can include a custom validation message.
   static ValidationRule<DateTime> dateAfter(DateTime date, {String? message}) =>
-      DateBefore(date, message: message);
+      DateAfter(date, message: message);
 
   /// Creates a [DateBefore] validation rule from a string date representation.
   ///
   /// This rule checks if a date is before a specified date represented as a string.
   /// It can include a custom validation message.
-  static ValidationRule<DateTime?> dateBeforeFromString(String date,
-          {String? format, String? message}) =>
-      DateBefore.fromString(date, format: format, message: message);
+  static ValidationRule<DateTime?> dateBeforeFromString(
+    String date, {
+    String? format,
+    String? message,
+  }) => DateBefore.fromString(date, format: format, message: message);
 
   /// Creates a [DateAfter] validation rule from a string date representation.
   ///
   /// This rule checks if a date is after a specified date represented as a string.
   /// It can include a custom validation message.
-  static ValidationRule<DateTime?> dateAfterFromString(String date,
-          {String? format, String? message}) =>
-      DateAfter.fromString(date, format: format, message: message);
+  static ValidationRule<DateTime?> dateAfterFromString(
+    String date, {
+    String? format,
+    String? message,
+  }) => DateAfter.fromString(date, format: format, message: message);
 
   /// Creates an [IsTrue] validation rule.
   ///
@@ -318,26 +339,31 @@ class Rules {
   ///
   /// This rule validates that the input file is of a specified type.
   /// It can include a custom validation message.
-  static ValidationRule<File?> fileType(List<String> allowedMimeTypes,
-          {String? message}) =>
-      FileTypeRule(allowedMimeTypes: allowedMimeTypes, message: message);
+  static ValidationRule<File?> fileType(
+    List<String> allowedMimeTypes, {
+    String? message,
+  }) => FileTypeRule(allowedMimeTypes: allowedMimeTypes, message: message);
 
   /// Creates a [FileSizeRule] validation rule.
   ///
   /// This rule validates that the input file size is within a specified limit.
   /// It can include a custom validation message.
-  static ValidationRule<File?> fileSize(int maxSizeInBytes,
-          {String? message}) =>
-      FileSizeRule(maxSizeInBytes: maxSizeInBytes, message: message);
+  static ValidationRule<File?> fileSize(
+    int maxSizeInBytes, {
+    String? message,
+  }) => FileSizeRule(maxSizeInBytes: maxSizeInBytes, message: message);
 
   /// Creates a [FileSizeRule] validation rule with the size in megabytes.
   ///
   /// This rule validates that the input file size is within a specified limit.
   /// It can include a custom validation message.
-  static ValidationRule<File?> fileSizeInMegabytes(int maxSizeInMegabytes,
-          {String? message}) =>
-      FileSizeRule.megabyte(
-          maxSizeInMegabytes: maxSizeInMegabytes, message: message);
+  static ValidationRule<File?> fileSizeInMegabytes(
+    int maxSizeInMegabytes, {
+    String? message,
+  }) => FileSizeRule.megabyte(
+    maxSizeInMegabytes: maxSizeInMegabytes,
+    message: message,
+  );
 
   static ValidationRule<T> optional<T>() => Optional<T>();
 }

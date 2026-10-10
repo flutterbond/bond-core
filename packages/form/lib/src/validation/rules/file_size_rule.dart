@@ -11,16 +11,12 @@ class FileSizeRule extends ValidationRule<File?> {
   ///
   /// - [maxSizeInBytes] The maximum size of the file in bytes (required).
   /// - [message] A custom validation message (optional) to be displayed when the validation fails.
-  FileSizeRule({
-    required this.maxSizeInBytes,
-    String? message,
-  }) : super(message);
+  FileSizeRule({required this.maxSizeInBytes, String? message})
+    : super(message);
 
-  FileSizeRule.megabyte({
-    required int maxSizeInMegabytes,
-    String? message,
-  })  : maxSizeInBytes = maxSizeInMegabytes * 1024 * 1024,
-        super(message);
+  FileSizeRule.megabyte({required int maxSizeInMegabytes, String? message})
+    : maxSizeInBytes = maxSizeInMegabytes * 1024 * 1024,
+      super(message);
 
   @override
   String validatorMessage(String fieldName) =>

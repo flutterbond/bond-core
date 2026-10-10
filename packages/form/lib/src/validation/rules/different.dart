@@ -30,8 +30,5 @@ class Different<T> extends ValidationRule<T> {
 }
 
 /// Factory function for creating a [Different] validation rule.
-Different<T> different<T>(
-  String otherField, {
-  String? message,
-}) =>
+Different<T> different<T>(String otherField, {String? message}) =>
     Different<T>(otherField, message: message);

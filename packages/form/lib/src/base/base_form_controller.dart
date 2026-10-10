@@ -15,8 +15,11 @@ import 'package:meta/meta.dart';
 ///   - [Failure] The error type that extends [Error], representing the failure cases of form submission.
 ///   - [State] The state type extending [BaseBondFormState] that holds the form's fields and submission status.
 @protected
-mixin BaseFormController<Success, Failure extends Error,
-    State extends BaseBondFormState<Success, Failure>> {
+mixin BaseFormController<
+  Success,
+  Failure extends Error,
+  State extends BaseBondFormState<Success, Failure>
+> {
   /// Returns the current state of the form.
   State get state;
 
@@ -65,8 +68,8 @@ mixin BaseFormController<Success, Failure extends Error,
       status = error != null
           ? BondFormStateStatus.invalid
           : _allValid(false)
-              ? BondFormStateStatus.valid
-              : BondFormStateStatus.invalid;
+          ? BondFormStateStatus.valid
+          : BondFormStateStatus.invalid;
     } else if (error != null) {
       status = BondFormStateStatus.invalid;
     } else if (state.status == BondFormStateStatus.invalid ||
@@ -77,10 +80,7 @@ mixin BaseFormController<Success, Failure extends Error,
           : BondFormStateStatus.invalid;
     }
 
-    state = state.copyWith(
-      fields: Map.from(state.fields),
-      status: status,
-    );
+    state = state.copyWith(fields: Map.from(state.fields), status: status);
   }
 
   /// Sets an error message for the specified field and updates the form state to invalid.
@@ -103,10 +103,7 @@ mixin BaseFormController<Success, Failure extends Error,
           ? BondFormStateStatus.valid
           : BondFormStateStatus.invalid;
     }
-    state = state.copyWith(
-      fields: Map.from(state.fields),
-      status: status,
-    );
+    state = state.copyWith(fields: Map.from(state.fields), status: status);
   }
 
   /// Updates the error message for the specified field and performs additional validation.

@@ -21,8 +21,8 @@ class DateAfter extends ValidationRule<DateTime> {
   /// - [message]: A custom validation message (optional) to be displayed
   ///   when the validation fails.
   DateAfter.fromString(String date, {String? format, String? message})
-      : date = DateFormat(format).parse(date),
-        super(message);
+    : date = DateFormat(format).parse(date),
+      super(message);
 
   @override
   String validatorMessage(String fieldName) =>

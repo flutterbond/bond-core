@@ -22,20 +22,15 @@ class AsyncDropDownFieldState<T> extends FormFieldState<T> {
   AsyncDropDownFieldState(
     T value, {
     required this.items,
-    required String label,
-    String? error,
+    required super.label,
+    super.error,
     this.cachedItems,
-    List<ValidationRule<T>> rules = const [],
-  }) : super(
-          value: value,
-          label: label,
-          error: error,
-          rules: rules,
-        );
+    super.rules,
+  }) : super(value: value);
 
   Future<List<DropDownItemState<T>>> get resolvedItems async {
     final resolved = await items;
-    this.cachedItems = resolved;
+    cachedItems = resolved;
     return resolved;
   }
 
@@ -73,9 +68,7 @@ class AsyncDropDownFieldState<T> extends FormFieldState<T> {
   }
 
   @override
-  AsyncDropDownFieldState<T> copyWithNullable({
-    T? value,
-  }) {
+  AsyncDropDownFieldState<T> copyWithNullable({T? value}) {
     return AsyncDropDownFieldState<T>(
       value as T,
       items: items,
