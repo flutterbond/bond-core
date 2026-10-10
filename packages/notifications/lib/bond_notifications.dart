@@ -1,4 +1,4 @@
-library notifications;
+library;
 
 export 'src/notifications_core.dart';
 export 'src/push_notifications.dart';

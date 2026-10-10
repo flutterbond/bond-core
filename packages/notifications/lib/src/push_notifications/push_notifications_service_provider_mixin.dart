@@ -22,8 +22,8 @@ mixin PushNotificationServiceProviderMixin on ServiceProvider {
   void handlePushNotificationAction(NotificationData data) {
     log('try to handlePushNotificationAction: $data');
     final String? code = data['code'] ?? data['item_type'];
-    final actionablePushNotifications =
-        pushNotifications.whereType<ActionablePushNotification>();
+    final actionablePushNotifications = pushNotifications
+        .whereType<ActionablePushNotification>();
     for (final pushNotification in actionablePushNotifications) {
       if (pushNotification.code.contains(code)) {
         pushNotification.onNotificationTapped(data);

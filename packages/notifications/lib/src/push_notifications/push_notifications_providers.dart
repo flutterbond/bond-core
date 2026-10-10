@@ -13,33 +13,37 @@ class PushNotificationsProviders extends NotificationProvider
   PushNotificationsProviders({required this.pushNotificationProviders});
 
   final List<StreamSubscription<NotificationData>>
-      _onNotificationsStreamsSubscriptions = [];
+  _onNotificationsStreamsSubscriptions = [];
   final List<StreamSubscription<NotificationData>>
-      _onNotificationsTappedStreamsSubscriptions = [];
+  _onNotificationsTappedStreamsSubscriptions = [];
 
   @override
   void listen() {
     for (final pushNotificationProvider in pushNotificationProviders) {
-      final onPushNotificationStreamSubscription =
-          pushNotificationProvider.onNotification.listen(onNotification);
-      _onNotificationsStreamsSubscriptions
-          .add(onPushNotificationStreamSubscription);
+      final onPushNotificationStreamSubscription = pushNotificationProvider
+          .onNotification
+          .listen(onNotification);
+      _onNotificationsStreamsSubscriptions.add(
+        onPushNotificationStreamSubscription,
+      );
     }
 
     for (final pushNotificationProvider in pushNotificationProviders) {
       final onPushNotificationTappedStreamSubscription =
-          pushNotificationProvider.onNotificationTapped
-              .listen(onNotificationTapped);
-      _onNotificationsTappedStreamsSubscriptions
-          .add(onPushNotificationTappedStreamSubscription);
+          pushNotificationProvider.onNotificationTapped.listen(
+            onNotificationTapped,
+          );
+      _onNotificationsTappedStreamsSubscriptions.add(
+        onPushNotificationTappedStreamSubscription,
+      );
     }
   }
 
   @override
   void onNotification(Map<String, dynamic> data) {
     log('onNotification: $data');
-    final featureProviders =
-        appProviders.whereType<PushNotificationServiceProviderMixin>();
+    final featureProviders = appProviders
+        .whereType<PushNotificationServiceProviderMixin>();
     for (final featureProvider in featureProviders) {
       featureProvider.handlePushNotification(data);
     }

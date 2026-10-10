@@ -6,8 +6,5 @@ class ServerNotificationData {
   final SeverNotificationChangedType type;
   final ListResponse<ServerNotificationModel> data;
 
-  ServerNotificationData({
-    required this.type,
-    required this.data,
-  });
+  ServerNotificationData({required this.type, required this.data});
 }

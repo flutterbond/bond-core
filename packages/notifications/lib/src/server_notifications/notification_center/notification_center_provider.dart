@@ -81,21 +81,23 @@ class NotificationCenterProvider extends NotificationProvider
   void onTap(ServerNotificationModel notification) {
     read(notification);
     onNotificationTapped(
-        notification.data..putIfAbsent('code', () => notification.code));
+      notification.data..putIfAbsent('code', () => notification.code),
+    );
   }
 
   StreamSubscription<NotificationData>? _streamsSubscriptions;
 
   @override
   void listen() {
-    _streamsSubscriptions =
-        pushNotificationProvider.onNotification.listen(onNotification);
+    _streamsSubscriptions = pushNotificationProvider.onNotification.listen(
+      onNotification,
+    );
   }
 
   @override
   void onNotification(Map<String, dynamic> data) async {
-    final notifications =
-        await notificationCenterDataSource.loadNotifications();
+    final notifications = await notificationCenterDataSource
+        .loadNotifications();
     serverNotificationStreamController.add(
       ServerNotificationData(
         type: SeverNotificationChangedType.loaded,
@@ -132,7 +134,8 @@ class NotificationCenterProvider extends NotificationProvider
       ),
     );
     final newResponse = await notificationCenterDataSource.loadNotifications(
-        nextUrl: serverNotifications.data.links?.next);
+      nextUrl: serverNotifications.data.links?.next,
+    );
     final oldData = serverNotifications.data.data;
     final combinedData = oldData.followedBy(newResponse.data).toList();
     final newServerNotificationData = ServerNotificationData(
