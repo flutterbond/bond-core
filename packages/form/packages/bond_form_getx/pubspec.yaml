@@ -1,6 +1,6 @@
 name: bond_form_getx
 description: Form is a Bond package provides a convenient way to handle Form using Getx.
-version: 0.0.15+20
+version: 0.1.0
 repository: https://github.com/onestudio-co/bond-core/tree/main/packages/form/packages/bond_form_getx
 homepage: https://github.com/onestudio-co/flutter-bond
 
@@ -14,4 +14,4 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.7.2
-  bond_form: ^0.0.22+19
+  bond_form: ^0.1.0
