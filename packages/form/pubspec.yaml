@@ -21,4 +21,5 @@ dependencies:
 
 dev_dependencies:
   intl_translation: ^0.22.0
-  test: ^1.25.15
+  flutter_test:
+    sdk: flutter

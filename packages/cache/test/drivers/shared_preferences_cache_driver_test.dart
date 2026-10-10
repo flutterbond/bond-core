@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:bond_cache/bond_cache.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class MockSharedPreferences extends Mock implements SharedPreferences {
   @override

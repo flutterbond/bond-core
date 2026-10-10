@@ -1,5 +1,5 @@
 import 'package:bond_network/bond_network.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class AnyModel extends Model {
   const AnyModel({required super.id});

@@ -6,7 +6,7 @@ import 'package:bond_cache/bond_cache.dart';
 import 'package:bond_core/bond_core.dart';
 import 'package:bond_network/bond_network.dart';
 import 'package:dio/dio.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   setUp(() {

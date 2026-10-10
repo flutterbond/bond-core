@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:bond_cache/src/helpers/common_cache_helper.dart';
 import 'package:bond_core/bond_core.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../common/custom_object.dart';
 import '../common/mock_service_provider.dart';
