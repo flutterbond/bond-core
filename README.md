@@ -28,6 +28,7 @@ Bond comprises multiple packages that can be integrated as per the requirements 
 |---|---|---|---|
 | `v1.0.0` (legacy) | bond_core 0.0.3, bond_cache 0.0.4+x, bond_network up to 0.0.11+11, bond_form up to 0.0.22+19, bond_form_riverpod up to 0.0.17+19, notifications/analytics 0.1.0 | 0.0.4+3 | 3.19 – 3.27 |
 | `v2.0.0` | core, cache, network, form, form_riverpod, form_getx, form_bloc 0.1.x; notifications, app_analytics 0.2.x | 0.1.x | 3.47.7+ |
+| `v2.1.0` | same as v2.0.0 | 0.2.x | 3.47.7+ |
 
 Upgrading from the 0.0.x packages: see [MIGRATION.md](MIGRATION.md).
 
@@ -43,6 +44,19 @@ dart run melos run analyze --no-select   # also: format, test, publish:dry
 
 `bond_socialite` is not part of the workspace (its dependencies cannot be resolved together with
 Melos 8) and is not published from this line.
+
+## Claude Code and MCP
+
+`.mcp.json` registers two MCP servers. Claude Code asks once to approve them; check them with
+`claude mcp list`.
+
+- `dart`: the official Dart & Flutter MCP server: analyzer, pub, tests, and reading/searching the
+  source of every workspace package.
+  It starts through `tool/mcp/dart.sh`, which always uses the Flutter version pinned in `.fvmrc`
+  (3.47.7) and never another Flutter on your PATH.
+- `bond`: the Bond MCP server from bond_cli: what each bond_* package does, its public API read from
+  the workspace source, migration notes, and the `bond create` generators.
+  Install it once with `dart install bond_cli` (Dart 3.13 or newer); `tool/mcp/bond.sh` starts it.
 
 ## Contribute to the Bond
 
