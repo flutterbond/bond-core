@@ -34,5 +34,8 @@ jobs:
       - name: Test
         run: dart run melos run test --no-select
 
+      - name: Check the data-driven fixes
+        run: dart run melos run fix:test --no-select
+
       - name: Publish dry run
         run: dart run melos run publish:dry --no-select

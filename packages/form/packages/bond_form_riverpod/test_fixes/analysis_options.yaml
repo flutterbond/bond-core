@@ -1,0 +1,4 @@
+# Lets `dart fix` see the deprecated typedefs this package declares itself.
+linter:
+  rules:
+    - deprecated_member_use_from_same_package

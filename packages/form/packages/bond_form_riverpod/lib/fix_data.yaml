@@ -1,0 +1,55 @@
+# Data-driven fixes for `dart fix`: after upgrading to bond_form_riverpod 0.1,
+# `dart fix --apply` renames the Riverpod 2 notifier names. Declaring the
+# provider with `NotifierProvider.autoDispose` and the family constructor
+# (`MyForm(super.arg)`) still have to be done by hand; see MIGRATION.md.
+# Every transform needs a `date`, otherwise the analyzer ignores it.
+version: 1
+transforms:
+  - title: 'Rename AutoDisposeFormStateNotifier to FormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      typedef: 'AutoDisposeFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'FormStateNotifier'
+  - title: 'Rename AutoDisposeStepFormStateNotifier to StepFormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      typedef: 'AutoDisposeStepFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'StepFormStateNotifier'
+  - title: 'Rename AutoDisposeStepperFormStateNotifier to StepperFormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      typedef: 'AutoDisposeStepperFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'StepperFormStateNotifier'
+  - title: 'Rename AutoDisposeFamilyFormStateNotifier to FamilyFormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      class: 'AutoDisposeFamilyFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'FamilyFormStateNotifier'
+  - title: 'Rename AutoDisposeFamilyStepFormStateNotifier to FamilyStepFormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      class: 'AutoDisposeFamilyStepFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'FamilyStepFormStateNotifier'
+  - title: 'Rename AutoDisposeFamilyStepperFormStateNotifier to FamilyStepperFormStateNotifier'
+    date: 2026-10-11
+    element:
+      uris: ['bond_form_riverpod.dart']
+      class: 'AutoDisposeFamilyStepperFormStateNotifier'
+    changes:
+      - kind: 'rename'
+        newName: 'FamilyStepperFormStateNotifier'
