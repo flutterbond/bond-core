@@ -46,10 +46,16 @@ Melos 8) and is not published from this line.
 
 ## Claude Code and MCP
 
-`.mcp.json` registers the official Dart & Flutter MCP server (`dart`): analyzer, pub, tests, and
-reading/searching the source of every workspace package. It starts through `tool/mcp/dart.sh`, which
-always uses the Flutter version pinned in `.fvmrc` (3.47.7) and never another Flutter on your PATH.
-Claude Code asks once to approve the project's MCP servers; check them with `claude mcp list`.
+`.mcp.json` registers two MCP servers. Claude Code asks once to approve them; check them with
+`claude mcp list`.
+
+- `dart`: the official Dart & Flutter MCP server: analyzer, pub, tests, and reading/searching the
+  source of every workspace package.
+  It starts through `tool/mcp/dart.sh`, which always uses the Flutter version pinned in `.fvmrc`
+  (3.47.7) and never another Flutter on your PATH.
+- `bond`: the Bond MCP server from bond_cli: what each bond_* package does, its public API read from
+  the workspace source, migration notes, and the `bond create` generators.
+  Install it once with `dart install bond_cli` (Dart 3.13 or newer); `tool/mcp/bond.sh` starts it.
 
 ## Contribute to the Bond
 
