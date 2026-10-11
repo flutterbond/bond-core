@@ -3,13 +3,29 @@ import 'package:dio/dio.dart';
 
 import 'base_bond_api_request.dart';
 
-/// BondApiClient is a simple API client built on top of Dio.
-/// BondFire is a singleton API client built on top of Dio.
+/// A fluent HTTP client built on top of Dio.
+///
+/// Each method starts a request that you configure and then run with
+/// `execute()`:
+///
+/// ```dart
+/// final user = await BondFire()
+///     .get<User>('/users/me')
+///     .factory(User.fromJson)
+///     .errorFactory(ServerError.fromJson)
+///     .execute();
+/// ```
+///
+/// BondFire is not a singleton: every instance sends requests with the [Dio]
+/// registered in the service locator (`sl<Dio>()`), so register [Dio] first.
+/// Apps usually register one BondFire as well, e.g.
+/// `it.registerLazySingleton<BondFire>(BondFire.new)`, and inject it into
+/// their API classes.
 class BondFire {
   /// The internal [Dio] instance used for making HTTP requests.
   final Dio _dio;
 
-  /// Private constructor for initializing the [Dio] instance.
+  /// Creates a client that uses the [Dio] registered in the service locator.
   BondFire() : _dio = sl<Dio>();
 
   /// Creates a GET request for the specified [path].
