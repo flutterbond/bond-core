@@ -1,0 +1,19 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Flutter Bond packages (bond_core, bond_network, bond_form, ...)",
+  "description": "Packages of the Flutter Bond framework: dependency injection with service providers (bond_core), networking with BondFire (bond_network), caching (bond_cache), forms and validation (bond_form with Riverpod, GetX and Bloc adapters), notifications (bond_notifications) and app analytics (bond_app_analytics).",
+  "excludeFolders": [
+    "packages/socialite",
+    "packages/form/packages/bond_form_riverpod/example",
+    ".github"
+  ],
+  "rules": [
+    "The 0.1 line (bond_core, bond_cache, bond_network, bond_form and its adapters 0.1.x; bond_notifications and bond_app_analytics 0.2.x) requires Dart 3.13 and Flutter 3.47.7 or newer.",
+    "bond_core 0.1 uses package:material_ui types: import package:material_ui/material_ui.dart instead of package:flutter/material.dart.",
+    "Register services in a ServiceProvider (Future<void> register(GetIt it)) and resolve them with sl<T>(); JSON factories go in ResponseDecoding.factories.",
+    "BondFire() returns a new instance on every call: register it once with it.registerLazySingleton<BondFire>(BondFire.new) and use sl<BondFire>().",
+    "Pass .errorFactory(ServerError.fromJson) to every BondFire request so failures surface as ServerError.",
+    "bond_form_riverpod 0.1 targets Riverpod 3: extend FormStateNotifier and declare the provider with NotifierProvider.autoDispose; family forms take their argument through the constructor (MyForm(super.arg)).",
+    "Upgrading from the 0.0.x packages: follow MIGRATION.md."
+  ]
+}
