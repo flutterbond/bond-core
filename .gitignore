@@ -40,3 +40,7 @@ coverage/
 # FVM (version pinned in .fvmrc) and local git worktrees
 .fvm/
 .worktrees/
+
+# Claude Code: personal files (the shared .claude/ and .mcp.json are committed)
+CLAUDE.local.md
+.claude/settings.local.json
