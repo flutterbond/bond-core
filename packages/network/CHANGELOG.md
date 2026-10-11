@@ -1,4 +1,10 @@
 ### Changelog
+## 0.1.1
+
+- Docs: `BondFire` is no longer described as a singleton with a private constructor.
+  Its doc comment now shows a request and explains that each instance uses the `Dio`
+  registered in the service locator.
+
 ## 0.1.0
 
 ### Breaking
