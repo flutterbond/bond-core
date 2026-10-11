@@ -28,6 +28,7 @@ Bond comprises multiple packages that can be integrated as per the requirements 
 |---|---|---|---|
 | `v1.0.0` (legacy) | bond_core 0.0.3, bond_cache 0.0.4+x, bond_network up to 0.0.11+11, bond_form up to 0.0.22+19, bond_form_riverpod up to 0.0.17+19, notifications/analytics 0.1.0 | 0.0.4+3 | 3.19 – 3.27 |
 | `v2.0.0` | core, cache, network, form, form_riverpod, form_getx, form_bloc 0.1.x; notifications, app_analytics 0.2.x | 0.1.x | 3.47.7+ |
+| `v2.1.0` | same as v2.0.0 | 0.2.x | 3.47.7+ |
 
 Upgrading from the 0.0.x packages: see [MIGRATION.md](MIGRATION.md).
 
