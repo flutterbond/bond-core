@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+* `dart fix` migrates the Riverpod 2 notifier names: after upgrading, run `dart fix --apply` to
+  rename `AutoDispose{,Step,Stepper}FormStateNotifier` and the removed
+  `AutoDisposeFamily{,Step,Stepper}FormStateNotifier` to `{,Step,Stepper}FormStateNotifier` and
+  `Family{,Step,Stepper}FormStateNotifier` (`lib/fix_data.yaml`). Declaring the provider with
+  `NotifierProvider.autoDispose` and the family constructor (`MyForm(super.arg)`) stay manual.
+
 ## 0.1.0
 
 Migrates to Riverpod 3. Riverpod 3 has one `Notifier` class for every

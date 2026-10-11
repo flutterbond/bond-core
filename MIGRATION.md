@@ -64,6 +64,10 @@ dependencies:
 | `extends AutoDisposeStepFormStateNotifier` / `...StepperFormStateNotifier` | `StepFormStateNotifier` / `StepperFormStateNotifier` + `.autoDispose` |
 | `extends AutoDisposeFamilyFormStateNotifier<..., Arg>` with `build(Arg arg)` | `extends FamilyFormStateNotifier<..., Arg>` with `MyForm(super.arg)`, `build()` reads `arg`, provider `NotifierProvider.autoDispose.family` |
 
+Run `dart fix --apply` after upgrading (bond_form_riverpod 0.1.1 or newer): it renames all six
+`AutoDispose*` notifier names in your code. Switching the providers to `NotifierProvider.autoDispose`
+and the family notifiers' `build(Arg arg)` to `MyForm(super.arg)` + `build()` is still manual.
+
 The old `AutoDispose{Form,StepForm,StepperForm}StateNotifier` names still compile as deprecated
 typedefs. Writes after the provider is disposed are ignored instead of throwing.
 

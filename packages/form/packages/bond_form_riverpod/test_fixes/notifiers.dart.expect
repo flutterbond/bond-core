@@ -1,0 +1,14 @@
+// ignore_for_file: non_abstract_class_inherits_abstract_member
+import 'package:bond_form_riverpod/bond_form_riverpod.dart';
+
+class LoginForm extends FormStateNotifier<String, Error> {}
+
+class StepForm extends StepFormStateNotifier<String, Error> {}
+
+class SignUpStepper extends StepperFormStateNotifier<String, Error> {}
+
+class EditProfileForm extends FamilyFormStateNotifier<String, Error, int> {}
+
+class EditProfileStep extends FamilyStepFormStateNotifier<String, Error, int> {}
+
+class EditProfileStepper extends FamilyStepperFormStateNotifier<String, Error, int> {}

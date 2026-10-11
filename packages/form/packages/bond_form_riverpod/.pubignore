@@ -2,3 +2,6 @@
 # verified on. Its macOS project predates the Flutter 3.47 migration (flavored
 # schemes, generated plugin registrant, Podfile.lock) and is not part of it.
 example/macos/
+
+# test_fixes/ only runs `dart fix --compare-to-golden`; it is not published.
+test_fixes/

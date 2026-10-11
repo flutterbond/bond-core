@@ -40,6 +40,12 @@ melos:
       packageFilters:
         dirExists: test
 
+    fix:test:
+      description: Check the data-driven fixes (lib/fix_data.yaml) against their golden files.
+      exec: dart fix --compare-to-golden test_fixes
+      packageFilters:
+        dirExists: test_fixes
+
     publish:dry:
       description: Validate every publishable package with a publish dry run.
       exec:
